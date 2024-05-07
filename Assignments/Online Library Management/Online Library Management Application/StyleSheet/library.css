@@ -1,0 +1,98 @@
+.signup, .sign-in,.welcomePage, .getBorrowBookCount, .showBorrowHistory,.borrowBook, .showReturnBooks,.showWalletRecharge{
+    display: none;
+}
+
+.buttons{
+    width: 12%;
+    height: 7%;
+    background-color: rgb(244, 130, 48);
+    border: 0rem;
+    color: white;
+    margin: 0 2%;
+    font-weight: bold;
+}
+.homepage{
+    text-align: center;
+    
+}
+.loginbtn{
+    width: 12%;
+    height: 7%;
+    background-color: rgb(244, 130, 48);
+    border: 0rem;
+    color: white;
+    font-weight: bold;
+}
+
+.submit{
+    width: 11.5%;
+    height: 7%;
+    background-color: rgb(244, 130, 48);
+    margin-top: 2%;
+    border: 0rem;
+    color: white;
+    font-weight: bold;
+}
+
+.valid{
+    color: green;
+    visibility: hidden;
+}
+.invalid, .specialChar ,.userNamelength{
+    color: red;
+    visibility: hidden;
+}
+
+.welcomeHeader{
+    height: 10%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 1.5%;
+}
+.logout{
+    width: 11.5%;
+    height: 70%;
+    background-color: rgb(244, 130, 48);
+    margin-top: 2%;
+    border: 0rem;
+    color: white;
+    font-weight: bold;
+}
+.welcome{
+    color: rgb(244, 130, 48);
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center  ;
+}
+
+.borrowBookTable, .borrowHistoryTable, .returnBooksTable{
+    margin: auto;
+    width: 70%;
+    font-size: 1.2rem;
+    text-align: center;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+.showWalletRecharge{
+    text-align: center;
+}
+
+.headings{
+    text-align: center;
+    color: rgb(244, 130, 48);
+    font-weight: bold;
+}
+
+.signuppage{
+    margin-left: 42%;
+}
+
+.submitBack{
+    margin-left: 40%;
+}
+
+.note{
+    margin-left: 36%;
+}

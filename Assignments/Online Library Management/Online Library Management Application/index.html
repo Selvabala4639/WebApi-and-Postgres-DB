@@ -1,0 +1,156 @@
+<html>
+    <title>
+        Online Library Management 
+    </title>
+    <head>
+        <script src="TypeScript\index.js"></script>
+        <link rel="stylesheet" href="StyleSheet\library.css">
+    </head>
+    <body>
+        <div id="homepage" class="homepage">
+            <h2 class="welcome">Home Page</h2>
+            <button class="buttons" onclick="newUserPage()">Sign Up</button>
+            <button class="buttons" onclick="existingUserPage()">Sign in</button>
+        </div>
+
+        <div id="signup" class="signup">
+        <div class="signuppage">
+            <h2 class="signin">Sign Up Page</h2>
+            <label for="userName">Name</label><br>
+            <input type="text" name="userName" id="userName" onfocusout="checkNewuserName()" onkeyup="checkNewuserName()">
+            <label for="" class="valid" >Valid</label>
+            <label for="" class="invalid" >*Invalid</label>
+            <span class="specialChar">Special Character not allowed</span>
+            <label for="" class="userNamelength">Author name length should not exceed 50</label><br>
+
+            <label for="">Gender</label><br>
+            <input type="text" name="" id="newUserGender"><br>
+            
+            <label for="">Department</label><br>
+            <input type="text" name="" id="newUserDepartment"><br>
+
+            <label for="newUserEmail">Email</label><br>
+            <input type="email" name="newUserEmail" id="newUserEmail" onfocusout="checkEmail()" onkeyup="checkEmail()">
+            <label for="" class="valid" >Valid</label>
+            <label for="" class="invalid" >*Invalid</label><br>
+
+
+            <label for="NewUserPassword">Password</label><br>
+            <input type="password" name="newUserPassword" id="newUserPassword" onfocusout="checkPassword()" onkeyup="checkPassword()">
+            <label for="" class="valid" >Valid</label>
+            <label for="" class="invalid" >*Password should contain atleast one Uppercase, one LowerCase, one digit and one Special Character</label><br>
+
+
+            <label for="confirm-password">Confirm Password</label><br>
+            <input type="password" name="confirm-password" id="confirm-password" onfocusout="checkConfirmPassword()" onkeyup="checkConfirmPassword()">
+            <label for="" class="valid" >Valid</label>
+            <label for="" class="invalid" >*Password and confirm Password should match</label><br>
+
+
+            <label for="newUserPhone">Phone</label><br>
+            <input type="text" name="newUserPhone" id="newUserPhone" maxlength="10" minlength="10" onfocusout="checkPhone()" onkeyup="checkPhone()">
+            <label for="" class="valid" >Valid</label>
+            <label for="" class="invalid" >*Invalid</label><br>
+        </div>
+            <div class="submitBack">
+                <button class="submit" onclick="signUp()">Submit</button>
+                <button class="buttons" onclick="logOut()">Back</button>
+            </div>
+            
+        </div>
+        <div id="sign-in" class="sign-in">
+            <div class="signuppage">
+                <h2 class="signin">Sign In Page</h2>
+                <label for="">Email</label><br>
+                <input type="text" name="" id="existing-user-email" value="aabb@gamil.com"><br><br>
+                <label for="">Password</label><br>
+                <input type="text" name="" id="existing-user-password" value="Selva@123"><br><br><br>
+            </div>
+            
+            <div class="submitBack">
+                <button class="loginbtn" id="login" onclick="loginIn()">Login</button><button class="buttons" onclick="logOut()">Back</button><br>
+            </div>
+            <div class="note">
+                <p><i><b>Note* </b></i>Default login credentials are given for easy login.</p>
+            </div>
+        </div>
+        <div id="welcomePage" class="welcomePage">
+            <div class="welcomeHeader">
+                <h2 class="welcome" id="greet"></h2>
+                <button class="logout" onclick="logOut()">LOG OUT</button>
+            </div>
+            <br>
+            <div>
+                <button class="buttons" onclick="showBorrowBook()">Borrow Book</button>
+                <button class="buttons" onclick="showBorrowHistory()"> Show Borrow History</button>
+                <button class="buttons" onclick="showReturnBooks()">Return Books</button>
+                <button class="buttons" onclick="showWalletRecharge()">Wallet Recharge</button>
+                <button class="buttons" onclick="showBalance()">Show Balance</button>
+                <button class="buttons" onclick="logOut()">Exit</button>
+            </div>
+
+            <div class="borrowBook" id="borrowBook">
+                <h2 class="headings">Borrow Book</h2>
+                <table border="1" class="borrowBookTable">
+                    <tr>
+                        <th>Book Name</th>
+                        <th>Author Name</th>
+                        <th>Book Count</th>
+                        <th>Action</th>
+                    </tr>
+                    <tbody class="borrowBookTableBody" id="borrowBookTableBody"> 
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="getBorrowBookCount" id="getBorrowBookCount">
+                    <label for="">Enter Book Count</label><br>
+                    <input type="text" name="" id="getBookCount"><br>
+                    <button onclick=" borrowBook()">Submit</button>
+            </div>
+            <div class="showBorrowHistory" id="showBorrowHistory">
+                <h2 class="headings">Borrow History</h2>
+                <table border="1" class="borrowHistoryTable" id="borrowHistoryTable">
+                    <tr>
+                        <th>BookID</th>
+                        <th>UserID</th>
+                        <th>Borrowed Date</th>
+                        <th>Borrowed Book Count</th>
+                        <th>Status</th>
+                        <th>Paid Fine</th>
+                    </tr>
+                    <tbody class="borrowHistoryBody" id="borrowHistoryBody">
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="showReturnBooks" id="showReturnBooks">
+                <h2 class="headings">Return Books</h2>
+                <table border="1" id="returnBooksTable" class="returnBooksTable">
+                <tr>
+                    <th>BookID</th>
+                    <th>Borrowed Date</th>
+                    <th>Book Count</th>
+                    <th>Action</th>
+                </tr>
+                    <tbody id="returnBooksBody">
+
+                    </tbody>
+                </table>
+                
+            </div>
+
+            <div class="showWalletRecharge" id="showWalletRecharge">
+                <h2 class="headings">Wallet Recharge</h2>
+                <div id="askAmount">
+                    <label for="">Enter Amount</label><br>
+                    <input type="text" name="" id="amount"><br><br>
+                    <button class="buttons" onclick="Recharge()">Recharge</button>
+                </div>
+            </div>
+            <div class="showBalance" id="showBalance">
+                <h2 class="welcome" id="currentBalance"> </h2>
+            </div>
+    </body>
+</html>

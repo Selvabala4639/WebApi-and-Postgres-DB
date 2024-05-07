@@ -8,7 +8,6 @@
     font-weight: bold;
 }
 
-
 .signUp, .signIn, .welcomePage,.checkBalance, .recharge,.viewTravelHistory,.travel,.exit{
     display: none;
 }
@@ -66,4 +65,28 @@
     width: 12%;
     height: 7%;
     margin: 0 2%;
+}
+
+.travelTable{
+    margin: auto;
+    width: 80%;
+    font-size: 1.2rem;
+    text-align: center;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+.tabelcell{
+    padding: 8px;
+}
+
+.buybutton{
+    background-color: rgb(244, 130, 48);
+    border: 0rem;
+    color: white;
+    font-weight: bold;
+    width: 50%;
+    height: 10%;
+    margin: 0 2%;
+    border-radius: 2px;
 }

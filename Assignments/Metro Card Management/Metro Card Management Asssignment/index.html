@@ -54,7 +54,7 @@
         <div id="signIn" class="signIn">
             <h2 class="welcome">Sign In Page</h2>
             <label for="">Email</label><br>
-            <input type="text" name="" id="existing-user-email" value="selva"><br>
+            <input type="text" name="" id="existing-user-email" value="selva@"><br>
             <label for="">Password</label><br>
             <input type="text" name="" id="existing-user-password" value="selva"><br><br>
             <button class="loginbtn" id="login" onclick="loginIn()">Login</button><br>
@@ -75,27 +75,27 @@
             </div>
         </div>
         <div id="checkBalance" class="checkBalance">
-            <h2>Check Balance</h2>
+            <h2 class="balance" id="balance">Check Balance</h2>
         </div>
         <div id="recharge" class="recharge">
             <h2>Recharge</h2>
             <form id="rechargeForm">
                 <label for="">Enter Amount</label><br>
-                <input type="text" name="amount" id="amount"><br>
+                <input type="text" name="amount" id="amount"><br><br>
                 <button onclick="return Recharge()">Recharge</button>
             </form>
         </div>
         <div id="viewTravelHistory" class="viewTravelHistory">
             <h2>View Travel History</h2>
             <div class="travelHistoryTable" id="travelHistoryTable">
-                <table border="1">
+                <table border="1" id="travelTable" class="travelTable">
                     <tr>
-                        <th>Travel ID</th>
-                        <th>Card Number</th>
-                        <th>From Location</th>
-                        <th>To Location</th>
-                        <th>Date</th>
-                        <th>Travel Cost</th>
+                        <th class="tabelcell">Travel ID</th>
+                        <th class="tabelcell">Card Number</th>
+                        <th class="tabelcell">From Location</th>
+                        <th class="tabelcell">To Location</th>
+                        <th class="tabelcell">Date</th>
+                        <th class="tabelcell">Travel Cost</th>
                     </tr>
                     <tbody id="travelBodyTable">
 
@@ -105,7 +105,7 @@
         </div>
         <div id="travel" class="travel">
             <h2>Travel</h2>
-            <table border="1">
+            <table border="1" class="travelTable">
                 <tr>
                     <th>TicketID</th>
                     <th>From Location</th>

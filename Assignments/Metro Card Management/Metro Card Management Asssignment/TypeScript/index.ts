@@ -1,97 +1,187 @@
-let UserIdAutoIncrement =1000;
-let TravelIdAutoIncrement = 2000;
-let TicketIdAutoIncremen = 3000;
+
 let CurrentUser:UserInfo;
 
-class PersonalDetails{
-    UserName: string;
-    UserPhone: string;
-    constructor(paramUserName: string, paramUserPhone:string){
-        this.UserName = paramUserName;
-        this.UserPhone = paramUserPhone;
+async function addUserAPI(user:UserInfo):Promise<void> {
+    const response = await fetch('http://localhost:5072/api/UserInfo' ,
+        {
+            method:'POST' ,
+            headers:{
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify(user)
+        });
+        if(!response.ok){
+            throw new Error('Failed to add user');
+        }
+        alert("Success");
+        homePage();
+}
+
+async function addTravelAPI(travel:TravelHistory):Promise<void> {
+    const response = await fetch('http://localhost:5072/api/TravelHistory' ,
+        {
+            method:'POST' ,
+            headers:{
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify(travel)
+        });
+        if(!response.ok){
+            throw new Error('Failed to add user');
+        }
+        alert("Success");
+}
+
+async function updateUser(id: number, user: UserInfo): Promise<void> {
+    const response = await fetch(`http://localhost:5072/api/UserInfo/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    });
+    if (!response.ok) {
+      throw new Error('Failed to update user');
     }
 }
 
-interface IBalance{
-    UserBalance:number;
-    WalletRecharge(amount:number):void;
-    DeductBalance(amount:number):void;
+async function updateTravelHistory(id: number, travel: TravelHistory): Promise<void> {
+    const response = await fetch(`http://localhost:5072/api/TravelHistory/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(travel)
+    });
+    if (!response.ok) {
+      throw new Error('Failed to update user');
+    }
 }
 
-class UserInfo extends PersonalDetails implements IBalance
+async function fetchUsers(): Promise<UserInfo[]> {
+    const apiUrl = 'http://localhost:5072/api/UserInfo';
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error('Failed to fetch contacts');
+    }
+    return await response.json();
+  }
+
+  async function fetchTravelHistory(): Promise<TravelHistory[]> {
+    const apiUrl = 'http://localhost:5072/api/TravelHistory';
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error('Failed to fetch contacts');
+    }
+    return await response.json();
+  }
+
+  async function fetchTicket(): Promise<TicketFair[]> {
+    const apiUrl = 'http://localhost:5072/api/TicketFair';
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error('Failed to fetch contacts');
+    }
+    return await response.json();
+  }
+
+// async function AddticketAPI(user:UserInfo):Promise<void> {
+//     const response = await fetch('http://localhost:5072/api/UserInfo' ,
+//         {
+//             method:'POST' ,
+//             headers:{
+//                 'Content-Type' : 'application/json'
+//             },
+//             body: JSON.stringify(user)
+//         });
+//         if(!response.ok){
+//             throw new Error('Failed to add user');
+//         }
+//         alert("Success");
+//         homePage();
+// }
+
+interface UserInfo 
 {
-    CardNumber :string;
-    UserEmail: string;
-    UserPassword : string;
-    UserBalance : number;
+    cardNumber :any;
+    userName: string;
+    userPhone: string;
+    userEmail: string;
+    userPassword : string;
+    userBalance : number;
 
-    constructor(paramUserName:string, paramUserPhone:string, paramEmail:string, paramPassword:string, )
-    {
-        super (paramUserName,paramUserPhone);
-        this.CardNumber ="CMRL" +(++UserIdAutoIncrement);
-        this.UserEmail = paramEmail;
-        this.UserPassword = paramPassword;
-        this.UserBalance = 100000;
-    }
+    // constructor(paramuserName:string, paramuserPhone:string, paramEmail:string, paramPassword:string, )
+    // {
+    //     this.userName  = paramuserName;
+    //     this.userPhone = paramuserPhone;
+    //     this.cardNumber =(++UserIdAutoIncrement);
+    //     this.userEmail = paramEmail;
+    //     this.userPassword = paramPassword;
+    //     this.userBalance = 100000;
+    // }
 
-    WalletRecharge(amount: number)
-    {
-        this.UserBalance+=amount;
-    }
+    
 
-    DeductBalance(amount: number): void {
-        this.UserBalance-=amount;
-    }
+    
 }
 
-class TravelHistory{
-    TravelId :String;
-    CardNumber :String;
-    FromLocation :String;
-    ToLocation :String;
-    TravelDate :Date;
-    TravelCost :number;
-    constructor(paramCardNumber:string, paramFromLocation: string, paramToLocation:string, paramTravelDate: Date, paramTravelCost:number)
-    {
-        this.TravelId = "TID" +(++TravelIdAutoIncrement);
-        this.CardNumber = paramCardNumber;
-        this.FromLocation = paramFromLocation;
-        this.ToLocation = paramToLocation;
-        this.TravelDate = paramTravelDate;
-        this.TravelCost = paramTravelCost
-    }
+function DeductBalance(amount: number): void {
+    CurrentUser.userBalance-=amount;
 }
 
-class TicketFair{
-    TicketId :string;
-    FromLocation: string;
-    ToLocation : string;
-    TicketPrice : number;
-    constructor(paramFrom:string, paramTo :string, paramPrice:number)
-    {
-        this.TicketId = "MR" +(++TicketIdAutoIncremen);
-        this.FromLocation = paramFrom;
-        this.ToLocation = paramTo;
-        this.TicketPrice = paramPrice;
-    }
+function WalletRecharge(amount: number)
+{
+    CurrentUser.userBalance+=amount;
+}
+
+interface TravelHistory{
+    travelID :any;
+    cardNumber :number;
+    fromLocation :String;
+    toLocation :String;
+    travelDate :string;
+    travelCost :number;
+    // constructor(paramcardNumber:string, paramfromLocation: string, paramtoLocation:string, paramtravelDate: Date, paramTravelCost:number)
+    // {
+    //     this.travelID = "TID" +(++travelIDAutoIncrement);
+    //     this.cardNumber = paramcardNumber;
+    //     this.fromLocation = paramfromLocation;
+    //     this.toLocation = paramtoLocation;
+    //     this.travelDate = paramtravelDate;
+    //     this.travelCost = paramTravelCost
+    // }
+}
+
+interface TicketFair{
+    ticketID :any;
+    fromLocation: string;
+    toLocation : string;
+    ticketPrice : number;
+    // constructor(paramFrom:string, paramTo :string, paramPrice:number)
+    // {
+    //     this.ticketID = "MR" +(++ticketIDAutoIncremen);
+    //     this.fromLocation = paramFrom;
+    //     this.toLocation = paramTo;
+    //     this.ticketPrice = paramPrice;
+    // }
 }
 
 // Lists
-let UserList :UserInfo []= [];
-let person1 = new PersonalDetails("Selvabala","9025976622");
-UserList.push(new UserInfo(person1.UserName,person1.UserPhone,"selva","selva"));
-UserList.push(new UserInfo("Avi","9626","avi",'avi'));
+// let UserList :UserInfo []= [];
 
-let TravelList :TravelHistory [] =[];
-TravelList.push(new TravelHistory("CMRL1001", 	"Airport"	,"Egmore",new Date(2023,10,10) ,55))
-TravelList.push(new TravelHistory("CMRL1001", 	"Alandur"	,"Alandur",new Date(2023,10,10) ,55))
+// UserList.push(new UserInfo("Selvabala","9025976622","selva","selva"));
+// UserList.push(new UserInfo("Avi","9626","avi",'avi'));
+
+// let TravelList :TravelHistory [] =[];
+// TravelList.push(new TravelHistory("CMRL1001", 	"Airport"	,"Egmore",new Date(2023,10,10) ,55))
+// TravelList.push(new TravelHistory("CMRL1001", 	"Alandur"	,"Alandur",new Date(2023,10,10) ,55))
 
 
-let TicketFairList :TicketFair [] =[];
-TicketFairList.push(new TicketFair("Airport",	"Egmore",	55))
-TicketFairList.push(new TicketFair(	"Airport",	"Koyambedu"	,25))
-TicketFairList.push(new TicketFair(	"Alandur"	,"Alandur"	,25))
-TicketFairList.push(new TicketFair("Koyambedu"	,"Egmore",	32))
+// let TicketFairList :TicketFair [] =[];
+// TicketFairList.push(new TicketFair("Airport",	"Egmore",	55))
+// TicketFairList.push(new TicketFair(	"Airport",	"Koyambedu"	,25))
+// TicketFairList.push(new TicketFair(	"Alandur"	,"Alandur"	,25))
+// TicketFairList.push(new TicketFair("Koyambedu"	,"Egmore",	32))
 
 function homePage()
 {
@@ -104,7 +194,7 @@ function homePage()
 function welcomePage()
 {
     let greet = document.getElementById("greet") as HTMLDivElement;
-    greet.innerHTML= `Welcome ${CurrentUser.UserName}`;
+    greet.innerHTML= `Welcome ${CurrentUser.userName}`;
     let welcomePage = document.getElementById("welcomePage") as HTMLDivElement;
     welcomePage.style.display = "block";
     let signInpage = document.getElementById("signIn") as HTMLDivElement;
@@ -125,21 +215,29 @@ let signUp = () =>
     let signUp  = (document.getElementById("signUp")as HTMLDivElement);
     homepage.style.display= "block";
     signUp.style.display= "none";
-    let name = document.getElementById("userName") as HTMLInputElement;
-    let newUserEmail = (document.getElementById('newUserEmail') as HTMLInputElement).value;
-    let newUserPassword = (document.getElementById('newUserPassword') as HTMLInputElement).value;
+    let name = (document.getElementById("userName") as HTMLInputElement).value;
+    let newuserEmail = (document.getElementById('newUserEmail') as HTMLInputElement).value;
+    let newuserPassword = (document.getElementById('newUserPassword') as HTMLInputElement).value;
     let newUserConfirmPassword = (document.getElementById('confirm-password') as HTMLInputElement).value;
-    let newUserPhone = (document.getElementById('newUserPhone') as HTMLInputElement).value;
+    let newuserPhone = (document.getElementById('newUserPhone') as HTMLInputElement).value;
 
-    if(checkNewUserName() && checkEmail() && checkPassword() && checkConfirmPassword() && checkPhone())
+    if(checkNewuserName() && checkEmail() && checkPassword() && checkConfirmPassword() && checkPhone())
     {
-        UserList.push(new UserInfo(name.value, newUserPhone, newUserEmail, newUserPassword))
+        // UserList.push(new UserInfo(name.value, newuserPhone, newuserEmail, newuserPassword))
+        const user:UserInfo = {
+            cardNumber:0,
+            userName: name,
+            userPhone: newuserPhone,
+            userEmail: newuserEmail,
+            userPassword : newuserPassword,
+            userBalance : 0
+        };
         alert("Registration Successful");
-        homePage();
+        addUserAPI(user);
     }
     else
     {
-        checkNewUserName();
+        checkNewuserName();
         checkEmail();
         checkPassword();
         checkConfirmPassword();
@@ -157,16 +255,17 @@ let existingUserPage = () =>
     signIn.style.display= "block";
 }
 
-let loginIn = () =>
+let loginIn = async() =>
 {
+    const userList = await fetchUsers();
     let signIn  = (document.getElementById("signIn")as HTMLDivElement);
     signIn.style.display= "none";
     
     let existingUserMail = (document.getElementById("existing-user-email") as HTMLInputElement).value;
-    let existingUserPassword = (document.getElementById("existing-user-password") as HTMLInputElement).value;
+    let existinguserPassword = (document.getElementById("existing-user-password") as HTMLInputElement).value;
     let validUser = false;
-    UserList.forEach(user => {
-        if(user.UserEmail == existingUserMail && user.UserPassword==existingUserPassword)
+    userList.forEach(user => {
+        if(user.userEmail == existingUserMail && user.userPassword==existinguserPassword)
             {
                 validUser = true;
                 CurrentUser = user;
@@ -194,8 +293,8 @@ function showBalance()
     viewTravelHistory.style.display="none";
     travel.style.display="none";
     exit.style.display="none";
-    
-    checkBalance.innerHTML+= `Your Balance is ${CurrentUser.UserBalance}`;
+    checkBalance.innerHTML="<br><br>";
+    checkBalance.innerHTML+= `Your Balance is ${CurrentUser.userBalance}`;
 }
 
 function showRecharge()
@@ -218,15 +317,17 @@ function Recharge()
 {
     let rechargeForm = document.getElementById("rechargeForm")as HTMLFormElement;
     let amount = (document.getElementById("amount")as HTMLInputElement).value;
-    CurrentUser.WalletRecharge(parseInt(amount));
+    WalletRecharge(parseInt(amount));
+    updateUser(CurrentUser.cardNumber,CurrentUser);
     rechargeForm.reset();
     alert("Amount added");
     showRecharge();
     return false;
 }
 
-function showtravelHistory()
+async function showtravelHistory()
 {
+    const travelList = await fetchTravelHistory();
     let checkBalance = (document.getElementById("checkBalance")as HTMLDivElement);
     let recharge = (document.getElementById("recharge")as HTMLDivElement);
     let viewTravelHistory= (document.getElementById("viewTravelHistory")as HTMLDivElement);
@@ -241,27 +342,28 @@ function showtravelHistory()
 
     let travelBodyTable = document.getElementById("travelBodyTable")as HTMLDivElement;
     travelBodyTable.innerHTML="";
-    TravelList.forEach(travel =>
+    travelList.forEach(travel =>
         {
-            if(travel.CardNumber == CurrentUser.CardNumber)
+            if(travel.cardNumber == CurrentUser.cardNumber)
             {
                 travelBodyTable.innerHTML +=
                 `
                 <tr>
-                    <td>${travel.TravelId}</td>
-                    <td>${travel.CardNumber}</td>
-                    <td>${travel.FromLocation}</td>
-                    <td>${travel.ToLocation}</td>
-                    <td>${travel.TravelDate.toLocaleDateString()}</td>
-                    <td>${travel.TravelCost}</td>
+                    <td class="tabelcell">${travel.travelID}</td>
+                    <td class="tabelcell">${travel.cardNumber}</td>
+                    <td class="tabelcell">${travel.fromLocation}</td>
+                    <td class="tabelcell">${travel.toLocation}</td>
+                    <td class="tabelcell">${travel.travelDate.toString().substring(0,10)}</td>
+                    <td class="tabelcell">${travel.travelCost}</td>
                 </tr>
                 `
             }
         });
 }
 
-function showTravel()
+async function showTravel()
 {
+    const ticketFairList = await fetchTicket();
     let checkBalance = (document.getElementById("checkBalance")as HTMLDivElement);
     let recharge = (document.getElementById("recharge")as HTMLDivElement);
     let viewTravelHistory = (document.getElementById("viewTravelHistory")as HTMLDivElement);
@@ -275,31 +377,41 @@ function showTravel()
     exit.style.display="none";
     let ticketFairTable = (document.getElementById("ticketFairTable")as HTMLDivElement);
     ticketFairTable.innerHTML="";
-    TicketFairList.forEach(ticket =>{
+    ticketFairList.forEach(ticket =>{
         ticketFairTable.innerHTML += 
         `
         <tr>
-        <td>${ticket.TicketId}</td>
-        <td>${ticket.FromLocation}</td>
-        <td>${ticket.ToLocation}</td>
-        <td>${ticket.TicketPrice}</td>
-        <td> <button onclick="return Travel('${ticket.TicketId}')"> Buy </button>  </td>
+        <td class="tabelcell">${ticket.ticketID}</td>
+        <td class="tabelcell">${ticket.fromLocation}</td>
+        <td class="tabelcell">${ticket.toLocation}</td>
+        <td class="tabelcell">${ticket.ticketPrice}</td>
+        <td class="tabelcell"> <button class="buybutton" onclick="return Travel('${ticket.ticketID}')"> Buy </button>  </td>
         </tr>
         `
     });
 }
 
-function Travel(id:string)
+async function Travel(id:string)
 {
-    TicketFairList.forEach(ticket =>
+    const ticketFairList = await fetchTicket();
+    ticketFairList.forEach(ticket =>
         {
-           if(ticket.TicketId==id)
+           if(ticket.ticketID==id)
             {
-                if(CurrentUser.UserBalance>=ticket.TicketPrice)
+                if(CurrentUser.userBalance>=ticket.ticketPrice)
                     {
-                        TravelList.push(new TravelHistory(CurrentUser.CardNumber,ticket.FromLocation,ticket.ToLocation,new Date(),ticket.TicketPrice));
-                        CurrentUser.DeductBalance(ticket.TicketPrice);
+                        // travelList.push(new TravelHistory(CurrentUser.cardNumber,ticket.fromLocation,ticket.toLocation,new Date(),ticket.ticketPrice));
+                        const travel : TravelHistory = {
+                            travelID :0,
+                            cardNumber :CurrentUser.cardNumber,
+                            fromLocation :ticket.fromLocation,
+                            toLocation :ticket.toLocation,
+                            travelDate :new Date().toISOString().substring(0,10),
+                            travelCost :ticket.ticketPrice
+                        };
+                        DeductBalance(ticket.ticketPrice);
                         alert("Ticket Booked.");
+                        addTravelAPI(travel);
                         return false;
                     }
                     else
@@ -349,9 +461,9 @@ function logOut()
     homepage.style.display="block";
 }
 //Validating Inputs for new User Registration
-let checkNewUserName = () =>{
+let checkNewuserName = () =>{
     let userName = (document.getElementById("userName")as HTMLInputElement).value;
-    let  regx_UserName = /^[a-zA-Z]{2,50}$/;
+    let  regx_userName = /^[a-zA-Z]{2,50}$/;
     if(userName=="")
         {
             (document.getElementsByClassName("invalid")[0]as HTMLLabelElement).style.visibility="visible";
@@ -369,7 +481,7 @@ let checkNewUserName = () =>{
             }
             else
             {
-                if(regx_UserName.test(userName))
+                if(regx_userName.test(userName))
                 {   
                     (document.getElementsByClassName("valid")[0]as HTMLLabelElement).style.visibility="visible";
                     (document.getElementsByClassName("specialChar")[0]as HTMLSpanElement).style.visibility="hidden";
@@ -417,9 +529,9 @@ function checkEmail()
 
 
 let checkPassword = () =>{
-    let newUserPassword = (document.getElementById("newUserPassword")as HTMLInputElement).value;
-    let regx_newUserPassword = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
-    if(newUserPassword=="")
+    let newuserPassword = (document.getElementById("newUserPassword")as HTMLInputElement).value;
+    let regx_newuserPassword = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+    if(newuserPassword=="")
     {
         (document.getElementsByClassName("invalid")[2]as HTMLLabelElement).style.visibility="visible";
         (document.getElementsByClassName("valid")[2]as HTMLLabelElement).style.visibility="hidden";
@@ -427,7 +539,7 @@ let checkPassword = () =>{
     }
     else
     {
-        if(regx_newUserPassword.test(newUserPassword))
+        if(regx_newuserPassword.test(newuserPassword))
         {
             (document.getElementsByClassName("valid")[2]as HTMLLabelElement).style.visibility="visible";
             (document.getElementsByClassName("invalid")[2]as HTMLLabelElement).style.visibility="hidden";
@@ -445,8 +557,8 @@ let checkPassword = () =>{
 
 let checkConfirmPassword = () =>{
     let confirmPassword = (document.getElementById("confirm-password")as HTMLInputElement).value;
-    let newUserPassword = (document.getElementById("newUserPassword")as HTMLInputElement).value;
-    if(confirmPassword==newUserPassword)
+    let newuserPassword = (document.getElementById("newUserPassword")as HTMLInputElement).value;
+    if(confirmPassword==newuserPassword)
     {
         (document.getElementsByClassName("valid")[3]as HTMLLabelElement).style.visibility="visible";
         (document.getElementsByClassName("invalid")[3]as HTMLLabelElement).style.visibility="hidden";
@@ -462,9 +574,9 @@ let checkConfirmPassword = () =>{
 
 let checkPhone = () =>
 {
-    let newUserPhone = (document.getElementById("newUserPhone")as HTMLInputElement).value;
-    let regx_newUserPhone = /^[0-9]{10,10}$/;
-    if(newUserPhone=="")
+    let newuserPhone = (document.getElementById("newUserPhone")as HTMLInputElement).value;
+    let regx_newuserPhone = /^[0-9]{10,10}$/;
+    if(newuserPhone=="")
         {
             (document.getElementsByClassName("invalid")[4]as HTMLLabelElement).style.visibility="visible";
             (document.getElementsByClassName("valid")[4]as HTMLLabelElement).style.visibility="hidden";
@@ -473,7 +585,7 @@ let checkPhone = () =>
 
     else
     {
-        if(regx_newUserPhone.test(newUserPhone))
+        if(regx_newuserPhone.test(newuserPhone))
             {
                 (document.getElementsByClassName("valid")[4]as HTMLLabelElement).style.visibility="visible";
                 (document.getElementsByClassName("invalid")[4]as HTMLLabelElement).style.visibility="hidden";
