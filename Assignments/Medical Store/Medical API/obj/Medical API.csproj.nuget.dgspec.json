@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Web Concepts\\TypeScript\\Assignment\\Medical API\\Medical API.csproj": {}
+    "D:\\Web Concepts\\API\\Assignments\\Medical Store\\Medical API\\Medical API.csproj": {}
   },
   "projects": {
-    "D:\\Web Concepts\\TypeScript\\Assignment\\Medical API\\Medical API.csproj": {
+    "D:\\Web Concepts\\API\\Assignments\\Medical Store\\Medical API\\Medical API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Web Concepts\\TypeScript\\Assignment\\Medical API\\Medical API.csproj",
+        "projectUniqueName": "D:\\Web Concepts\\API\\Assignments\\Medical Store\\Medical API\\Medical API.csproj",
         "projectName": "Medical API",
-        "projectPath": "D:\\Web Concepts\\TypeScript\\Assignment\\Medical API\\Medical API.csproj",
+        "projectPath": "D:\\Web Concepts\\API\\Assignments\\Medical Store\\Medical API\\Medical API.csproj",
         "packagesPath": "C:\\Users\\SelvabalaVelmurugan\\.nuget\\packages\\",
-        "outputPath": "D:\\Web Concepts\\TypeScript\\Assignment\\Medical API\\obj\\",
+        "outputPath": "D:\\Web Concepts\\API\\Assignments\\Medical Store\\Medical API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\SelvabalaVelmurugan\\AppData\\Roaming\\NuGet\\NuGet.Config"

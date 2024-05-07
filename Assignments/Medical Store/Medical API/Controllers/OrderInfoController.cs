@@ -74,7 +74,7 @@ namespace Medical_API.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteContact(int id)
         {
-            var order = _dbContext.orders.Find(m => m.OrderID == id);
+            var order = _dbContext.orders.FirstOrDefault(m => m.OrderID == id);
             if (order == null)
             {
                 return NotFound();

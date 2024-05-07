@@ -1,7 +1,5 @@
 
-let userIDAutoIncrement =3;
-let medicineIDAutoIncrement = 3;
-let orderIDAutoIncrement = 3;
+
 let selectedMedicine : MedicineInfo;
 
 
@@ -259,7 +257,7 @@ function signUp()
     {
         // UserList.push(new UserInfo(name.value, newuserEmail, newUserPassword, newuserPhone))
         const user : UserInfo = {
-            userID :userIDAutoIncrement++,
+            userID :0,
             userName :name,
             userEmail: newuserEmail,
             userPassword : newUserPassword,
@@ -350,8 +348,8 @@ async function renderMedicineTable(){
 
 
      let medicineDetailsTable = document.getElementById('medicineDetailsTable') as HTMLDivElement;
-     let tableHTML="<table border='1'> ";
-     tableHTML += "<tr><th>Medicine Name</th><th>Price</th><th>quantity</th><th>Expiry date</th><td>Action</td></tr>";
+     let tableHTML="<table border='1' class='travelTable'> ";
+     tableHTML += "<tr><th>Medicine Name</th><th>Price</th><th>quantity</th><th>Expiry date</th><th>Action</th></tr>";
 
     const medicines = await fetchMedicines();
     medicines.forEach(medicine =>
@@ -359,7 +357,7 @@ async function renderMedicineTable(){
             tableHTML += `<tr><td>${medicine.medicineName}</td>
             <td>${medicine.medicinePrice}</td>
             <td>${medicine.medicineQuantity}</td>
-            <td>${medicine.medicineExpireDate}</td>
+            <td>${medicine.medicineExpireDate.toString().substring(0,10)}</td>
             <td><button onclick = "return showEditMedicine(${medicine.medicineID})"> Edit </button> 
             <button onclick="return deleteMedicine('${medicine.medicineID}')"> Delete </button> </td>
             </tr>`;
@@ -391,7 +389,7 @@ function ShowAddMedicineForm()
     addMedicine.style.display ="none";
     
     const medicine:MedicineInfo = {
-        medicineID: medicineIDAutoIncrement++,
+        medicineID: 0,
         medicineName: addMedicineName,
         medicinePrice: parseInt(addPrice),
         medicineQuantity: parseInt(addQuantity),
@@ -413,6 +411,7 @@ async function showEditMedicine (id:number){
             {
                 let editMedicine = document.getElementById("editMedicine")as HTMLDivElement;
                 editMedicine.style.display="block";
+                
                 editMedicine.innerHTML += `<button onclick="return EditMedincine('${medicine.medicineID}')">Submit</button>`
                 let editmedicineName = document.getElementById("editMedicineName")as HTMLInputElement;
                 let editPrice = document.getElementById("editPrice")as HTMLInputElement;
@@ -506,7 +505,7 @@ async function purchase()
 
 
     let buyTable = (document.getElementById("buyTable") as HTMLDivElement);
-    let buyTableBody = "<table border='1'>";
+    let buyTableBody = "<table border='1' class='travelTable'>";
     buyTableBody += "<tr> <th> Medicine Name </th> <th> Price </th> <th> Medicine quantity </th> <th> Expire Date </th><th>Option</td> </tr>";
 
     medicineList.forEach((medicine) => {
@@ -516,7 +515,7 @@ async function purchase()
                 <tr><td>${medicine.medicineName}</td>
                 <td>${medicine.medicinePrice}</td>
                 <td>${medicine.medicineQuantity}</td>
-                <td>${medicine.medicineExpireDate.toString()}</td>
+                <td>${medicine.medicineExpireDate.toString().substring(0,10)}</td>
                 <td><button onclick="ShowbuyMedicine('${medicine.medicineID}')">Buy</button>
                 </tr>
                 `;
@@ -572,12 +571,12 @@ function buyMedicine()
                 CurrentUser.userBalance -= totalPrice;
                 
                 const order:OrderInfo ={
-                    orderID : -1,
+                    orderID : 0,
                     medicineID : selectedMedicine.medicineID,
                     userID : CurrentUser.userID,
                     medicineName : selectedMedicine.medicineName,
                     quantity : parseInt(buyquantity),
-                    orderDate : "05/05/2024",
+                    orderDate : new Date().toISOString().substring(0,10),
                     totalPrice : selectedMedicine.medicinePrice,
                     orderStatus : "Ordered"
                 }
@@ -619,7 +618,7 @@ async function orderHistory()
         <tr>
             <td>${order.medicineName}</td>
             <td>${order.quantity}</td>
-            <td>${order.orderDate.toString()}</td>
+            <td>${order.orderDate.toString().substring(0,10)}</td>
             <td>${order.orderStatus}</td>
         </tr>
         `;
@@ -652,7 +651,7 @@ async function Showcancel()
                     <tr>
                     <td> ${order.medicineName + order.orderID}</td>
                     <td> ${order.quantity}</td>
-                    <td> ${order.orderDate.toString()}</td>
+                    <td> ${order.orderDate.toString().substring(0,10)}</td>
                     <td> ${order.orderStatus}</td>
                     <td> <button onclick = "return cancelOrder(${order.orderID})">Cancel </button> </td>
                     </tr>
@@ -754,6 +753,24 @@ function logOut()
     let welcomePage = document.getElementById("welcomePage") as HTMLDivElement;
     welcomePage.style.display = "none";
     homepage.style.display="block";
+    let medicineDetails = document.getElementById("medicineDetail") as HTMLDivElement;
+    let purchase = document.getElementById("purchase") as HTMLDivElement;
+    let orderHistory = document.getElementById("orderHistory") as HTMLDivElement;
+    let cancel = document.getElementById("cancel") as HTMLDivElement;
+    let topUp = document.getElementById("topUp") as HTMLDivElement;
+    let showBalance = document.getElementById("showBalance") as HTMLDivElement;
+    showBalance.style.display="none";
+    purchase.style.display = "none";
+    medicineDetails.style.display="none";
+    orderHistory.style.display="none";
+    cancel.style.display="none";
+    topUp.style.display="none";
+    let signinpage = document.getElementById("sign-in") as HTMLDivElement;
+    
+    let signup = document.getElementById('signup') as HTMLDivElement;
+
+    signinpage.style.display="none";
+    signup.style.display="none";
 }
 
 

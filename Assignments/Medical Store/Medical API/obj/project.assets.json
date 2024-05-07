@@ -2245,11 +2245,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\Web Concepts\\TypeScript\\Assignment\\Medical API\\Medical API.csproj",
+      "projectUniqueName": "D:\\Web Concepts\\API\\Assignments\\Medical Store\\Medical API\\Medical API.csproj",
       "projectName": "Medical API",
-      "projectPath": "d:\\Web Concepts\\TypeScript\\Assignment\\Medical API\\Medical API.csproj",
+      "projectPath": "D:\\Web Concepts\\API\\Assignments\\Medical Store\\Medical API\\Medical API.csproj",
       "packagesPath": "C:\\Users\\SelvabalaVelmurugan\\.nuget\\packages\\",
-      "outputPath": "d:\\Web Concepts\\TypeScript\\Assignment\\Medical API\\obj\\",
+      "outputPath": "D:\\Web Concepts\\API\\Assignments\\Medical Store\\Medical API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\SelvabalaVelmurugan\\AppData\\Roaming\\NuGet\\NuGet.Config"

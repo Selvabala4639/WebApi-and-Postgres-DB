@@ -80,7 +80,7 @@ namespace Medical_API.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteMedicine(int id)
         {
-            var medicine = _dbContext.medicines.Find(m => m.MedicineID == id);
+            var medicine = _dbContext.medicines.FirstOrDefault(m => m.MedicineID == id);
             if (medicine == null)
             {
                 return NotFound();

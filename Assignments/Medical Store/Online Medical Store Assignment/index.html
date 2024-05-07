@@ -8,14 +8,15 @@
     </head>
 
     <body>
-        <div id="homepage" >
+        <div id="homepage" class="homepage">
             <h2 class="welcome">Home Page</h2>
             <button class="buttons" onclick="newUserPage()">Sign Up</button>
             <button class="buttons" onclick="existingUserPage()">Sign in</button>
         </div>
 
-        <div id="signup">
-            <h2 class="welcome">Sign Up Page</h2>
+        <div id="signup" class="signup">
+            <div>
+                <h2 class="signin">Sign Up Page</h2>
             <label for="userName">Name</label><br>
             <input type="text" name="userName" id="userName" onfocusout="checkNewuserName()" onkeyup="checkNewuserName()">
             <label for="" class="valid" >Valid</label>
@@ -46,16 +47,23 @@
             <input type="text" name="newUserPhone" id="newUserPhone" maxlength="10" minlength="10" onfocusout="checkPhone()" onkeyup="checkPhone()">
             <label for="" class="valid" >Valid</label>
             <label for="" class="invalid" >*Invalid</label><br>
-            <button class="submit" onclick="signUp()">Submit</button>
+                <div class="submitBack">
+                    <button class="submit" onclick="signUp()">Submit</button>
+                <button class="buttons" onclick="logOut()">Back</button>
+                </div>
+            
+            </div>
+
+            
         </div>
         <div id="sign-in" class="sign-in">
-            <h2 class="welcome">Sign In Page</h2>
+            <h2 class="signin">Sign In Page</h2>
             <label for="">Email</label><br>
-            <input type="text" name="" id="existing-user-email" value="selva@gmail.com"><br>
+            <input type="text" name="" id="existing-user-email" value="selva@gmail.com"><br><br>
             <label for="">Password</label><br>
-            <input type="text" name="" id="existing-user-password" value="Selva@123"><br><br>
-            <button class="loginbtn" id="login" onclick="loginIn()">Login</button><br>
-            <p><i><b>Note* </b></i>email and pasword are given for easy login.</p>
+            <input type="text" name="" id="existing-user-password" value="Selva@123"><br><br><br>
+            <button class="loginbtn" id="login" onclick="loginIn()">Login</button><button class="buttons" onclick="logOut()">Back</button><br>
+            <p><i><b>Note* </b></i>Default login credentials are given for easy login.</p>
         </div>
         
         <div id="welcomePage" class="welcomePage">
@@ -81,13 +89,17 @@
             <div id="medicineDetailsTable">
                 <!-- Table will be inserted here  -->
             </div>
-            <button class="addbtn" onclick="ShowAddMedicineForm()">Add</button><br>
+            <div class="addbtndiv">
+                <button class="addbtn" onclick="ShowAddMedicineForm()">Add</button><br><br>
+            </div>
+            <br>
             <div id="addMedicine" class="addMedicine">
                 <form class="addMedicineForm" id="addMedicineForm" onsubmit="return AddMedicine()">
                     <input type="text" name="addMedicineName" id="addMedicineName" placeholder="Medicine Name"><br><br>
                     <input type="number" name="addPrice" id="addPrice" placeholder="Price"><br><br>
-                    <input type="number" name="addQuantity" id="addQuantity" placeholder="Quantity"><br><br><br>
-                    <input type="date" name="addExpiryDate" id="addExpiryDate" placeholder="Expiry Date"><br>
+                    <input type="number" name="addQuantity" id="addQuantity" placeholder="Quantity"><br><br>
+                    <label for="">Expire Date</label>
+                    <input type="date" name="addExpiryDate" id="addExpiryDate" placeholder="Expiry Date"><br><br>
                     <button type="submit" >Submit</button>
                 </form>
             </div>
@@ -119,7 +131,7 @@
         </div>
         <div class="orderHistory" id="orderHistory">
             <h2>Order History</h2>
-            <table border="1">
+            <table border="1" class='travelTable'>
                 <tr>
                     <th>Medicine Name</th>
                     <th>Quantity</th>
@@ -134,7 +146,7 @@
         </div>
         <div class="cancel" id="cancel">
             <h2>Cancel Order</h2>
-            <table border="1">
+            <table border="1" class='travelTable'>
                 <tr>
                     <th>Medicine Name</th>
                     <th>Quantity</th>
@@ -146,12 +158,12 @@
 
                 </tbody>
             </table>
-        </div>
+        </div><br>
         <div class="topUp" id="topUp">
             <h2>TopUp</h2>
             <div id="askAmount">
                 <label for="">Enter Amount</label><br>
-                <input type="text" name="" id="amount">
+                <input type="text" name="" id="amount"><br><br>
                 <button class="buttons" onclick="Recharge()">Recharge</button>
             </div>
         </div>

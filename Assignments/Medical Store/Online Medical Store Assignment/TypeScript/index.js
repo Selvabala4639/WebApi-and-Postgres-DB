@@ -8,9 +8,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-let userIDAutoIncrement = 3;
-let medicineIDAutoIncrement = 3;
-let orderIDAutoIncrement = 3;
 let selectedMedicine;
 // let OrderList :OrderInfo [] =[];
 let CurrentUser;
@@ -195,7 +192,7 @@ function signUp() {
     if (checkNewuserName() && checkEmail() && checkPassword() && checkConfirmPassword() && checkPhone()) {
         // UserList.push(new UserInfo(name.value, newuserEmail, newUserPassword, newuserPhone))
         const user = {
-            userID: userIDAutoIncrement++,
+            userID: 0,
             userName: name,
             userEmail: newuserEmail,
             userPassword: newUserPassword,
@@ -272,14 +269,14 @@ function renderMedicineTable() {
         topUp.style.display = "none";
         showBalance.style.display = "none";
         let medicineDetailsTable = document.getElementById('medicineDetailsTable');
-        let tableHTML = "<table border='1'> ";
-        tableHTML += "<tr><th>Medicine Name</th><th>Price</th><th>quantity</th><th>Expiry date</th><td>Action</td></tr>";
+        let tableHTML = "<table border='1' class='travelTable'> ";
+        tableHTML += "<tr><th>Medicine Name</th><th>Price</th><th>quantity</th><th>Expiry date</th><th>Action</th></tr>";
         const medicines = yield fetchMedicines();
         medicines.forEach(medicine => {
             tableHTML += `<tr><td>${medicine.medicineName}</td>
             <td>${medicine.medicinePrice}</td>
             <td>${medicine.medicineQuantity}</td>
-            <td>${medicine.medicineExpireDate}</td>
+            <td>${medicine.medicineExpireDate.toString().substring(0, 10)}</td>
             <td><button onclick = "return showEditMedicine(${medicine.medicineID})"> Edit </button> 
             <button onclick="return deleteMedicine('${medicine.medicineID}')"> Delete </button> </td>
             </tr>`;
@@ -302,7 +299,7 @@ function AddMedicine() {
     let addMedicineForm = document.getElementById("addMedicineForm");
     addMedicine.style.display = "none";
     const medicine = {
-        medicineID: medicineIDAutoIncrement++,
+        medicineID: 0,
         medicineName: addMedicineName,
         medicinePrice: parseInt(addPrice),
         medicineQuantity: parseInt(addQuantity),
@@ -403,7 +400,7 @@ function purchase() {
         // buyTableBody += "</table>";
         // buyTable.innerHTML = buyTableBody;
         let buyTable = document.getElementById("buyTable");
-        let buyTableBody = "<table border='1'>";
+        let buyTableBody = "<table border='1' class='travelTable'>";
         buyTableBody += "<tr> <th> Medicine Name </th> <th> Price </th> <th> Medicine quantity </th> <th> Expire Date </th><th>Option</td> </tr>";
         medicineList.forEach((medicine) => {
             if (new Date(medicine.medicineExpireDate) > new Date()) {
@@ -411,7 +408,7 @@ function purchase() {
                 <tr><td>${medicine.medicineName}</td>
                 <td>${medicine.medicinePrice}</td>
                 <td>${medicine.medicineQuantity}</td>
-                <td>${medicine.medicineExpireDate.toString()}</td>
+                <td>${medicine.medicineExpireDate.toString().substring(0, 10)}</td>
                 <td><button onclick="ShowbuyMedicine('${medicine.medicineID}')">Buy</button>
                 </tr>
                 `;
@@ -457,12 +454,12 @@ function buyMedicine() {
                 selectedMedicine.medicineQuantity -= parseInt(buyquantity);
                 CurrentUser.userBalance -= totalPrice;
                 const order = {
-                    orderID: -1,
+                    orderID: 0,
                     medicineID: selectedMedicine.medicineID,
                     userID: CurrentUser.userID,
                     medicineName: selectedMedicine.medicineName,
                     quantity: parseInt(buyquantity),
-                    orderDate: "05/05/2024",
+                    orderDate: new Date().toISOString().substring(0, 10),
                     totalPrice: selectedMedicine.medicinePrice,
                     orderStatus: "Ordered"
                 };
@@ -498,7 +495,7 @@ function orderHistory() {
         <tr>
             <td>${order.medicineName}</td>
             <td>${order.quantity}</td>
-            <td>${order.orderDate.toString()}</td>
+            <td>${order.orderDate.toString().substring(0, 10)}</td>
             <td>${order.orderStatus}</td>
         </tr>
         `;
@@ -528,7 +525,7 @@ function Showcancel() {
                     <tr>
                     <td> ${order.medicineName + order.orderID}</td>
                     <td> ${order.quantity}</td>
-                    <td> ${order.orderDate.toString()}</td>
+                    <td> ${order.orderDate.toString().substring(0, 10)}</td>
                     <td> ${order.orderStatus}</td>
                     <td> <button onclick = "return cancelOrder(${order.orderID})">Cancel </button> </td>
                     </tr>
@@ -613,6 +610,22 @@ function logOut() {
     let welcomePage = document.getElementById("welcomePage");
     welcomePage.style.display = "none";
     homepage.style.display = "block";
+    let medicineDetails = document.getElementById("medicineDetail");
+    let purchase = document.getElementById("purchase");
+    let orderHistory = document.getElementById("orderHistory");
+    let cancel = document.getElementById("cancel");
+    let topUp = document.getElementById("topUp");
+    let showBalance = document.getElementById("showBalance");
+    showBalance.style.display = "none";
+    purchase.style.display = "none";
+    medicineDetails.style.display = "none";
+    orderHistory.style.display = "none";
+    cancel.style.display = "none";
+    topUp.style.display = "none";
+    let signinpage = document.getElementById("sign-in");
+    let signup = document.getElementById('signup');
+    signinpage.style.display = "none";
+    signup.style.display = "none";
 }
 //Validating Inputs for new User Registration
 function checkNewuserName() {

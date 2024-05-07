@@ -7,6 +7,10 @@
     margin: 0 2%;
     font-weight: bold;
 }
+.homepage{
+    text-align: center;
+    
+}
 .loginbtn{
     width: 12%;
     height: 7%;
@@ -27,20 +31,34 @@
 }
 .addbtn{
     width: 12%;
-    height: 7%;
+    height: 100%;
     background-color: rgb(244, 130, 48);
     border: 0rem;
     color: white;
     font-weight: bold;
     margin-top: 2%;
+    align-content: center;
+}
+/* .submitBack{
+    margin-left: 30%;
+} */
+.addbtndiv{
+    display: flex;
+    height: 7%;
+    justify-content: center;
 }
 
 #signup{
     display: none;
 }
+.signup{
+    margin-left: 42%;
+}
 
 .sign-in{
     display: none;
+    /* text-align: center; */
+    margin-left: 42%;
 }
 .welcomeHeader{
     height: 10%;
@@ -62,6 +80,19 @@
     color: rgb(244, 130, 48);
     font-weight: bold;
     font-size: 2rem;
+    text-align: center  ;
+}
+.signin{
+    color: rgb(244, 130, 48);
+    font-weight: bold;
+}
+.travelTable{
+    margin: auto;
+    width: 80%;
+    font-size: 1.2rem;
+    text-align: center;
+    border-collapse: collapse;
+    padding: 5px;
 }
 
 .medicineDetail  ,.welcomePage, .confirmOrder, .purchase,.orderHistory, .cancel ,.topUp ,.showBalance, .addMedicine, .editMedicine{
@@ -75,4 +106,13 @@
 .invalid, .specialChar ,.userNamelength{
     color: red;
     visibility: hidden;
+}
+
+.addMedicine{
+    margin-left: 44.5%;
+    margin-top: 2%;
+}
+
+.topUp{
+    text-align: center;
 }

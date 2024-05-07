@@ -21,6 +21,6 @@ namespace Medical_API.Data
         public string MedicineName { get; set; }
         public double MedicinePrice { get; set; }
         public int MedicineQuantity { get; set; }
-        public string MedicineExpireDate { get; set; }
+        public DateTime MedicineExpireDate { get; set; }
     }
 }
