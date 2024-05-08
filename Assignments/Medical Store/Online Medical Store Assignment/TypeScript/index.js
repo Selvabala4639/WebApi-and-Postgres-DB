@@ -502,6 +502,33 @@ function orderHistory() {
         });
     });
 }
+function downloadOrderHistory() {
+    let csv_data = [];
+    let rows = document.querySelectorAll("#orderTableCSV tr");
+    //let rows = document.getElementsByClassName("orderTableCSV");
+    for (let i = 0; i < rows.length; i++) {
+        let cols = rows[i].querySelectorAll('td,th');
+        let csvrow = [];
+        for (let j = 0; j < cols.length; j++) {
+            csvrow.push(cols[j].innerHTML);
+        }
+        csv_data += (csvrow.join(",") + "\n");
+    }
+    // csv_data += (csv_data.join('\n'));
+    downloadCSVFile(csv_data);
+    alert("Downloaded");
+}
+function downloadCSVFile(csvData) {
+    let CSVFile = new Blob([csvData], { type: "text//csv" });
+    let temp_link = document.createElement('a');
+    temp_link.download = "Medicine Order History.csv";
+    let url = window.URL.createObjectURL(CSVFile);
+    temp_link.href = url;
+    temp_link.style.display = "none";
+    document.body.appendChild(temp_link);
+    temp_link.click();
+    document.body.removeChild(temp_link);
+}
 function Showcancel() {
     return __awaiter(this, void 0, void 0, function* () {
         const orderList = yield fetchOrders();

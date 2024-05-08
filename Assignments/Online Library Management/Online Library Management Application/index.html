@@ -86,17 +86,18 @@
                 <button class="buttons" onclick="showReturnBooks()">Return Books</button>
                 <button class="buttons" onclick="showWalletRecharge()">Wallet Recharge</button>
                 <button class="buttons" onclick="showBalance()">Show Balance</button>
-                <button class="buttons" onclick="logOut()">Exit</button>
+                <!-- <input type="submit" name="" id="" class="buttons" value="Exit" onclick="return logOut()"> -->
+                <button class="buttons" onclick="return logOut()">Exit</button>
             </div>
 
             <div class="borrowBook" id="borrowBook">
                 <h2 class="headings">Borrow Book</h2>
                 <table border="1" class="borrowBookTable">
                     <tr>
-                        <th>Book Name</th>
-                        <th>Author Name</th>
-                        <th>Book Count</th>
-                        <th>Action</th>
+                        <th class="tabelcell">Book Name</th>
+                        <th class="tabelcell">Author Name</th>
+                        <th class="tabelcell">Book Count</th>
+                        <th class="tabelcell">Action</th>
                     </tr>
                     <tbody class="borrowBookTableBody" id="borrowBookTableBody"> 
 
@@ -104,20 +105,19 @@
                 </table>
             </div>
             <div class="getBorrowBookCount" id="getBorrowBookCount">
-                    <label for="">Enter Book Count</label><br>
-                    <input type="text" name="" id="getBookCount"><br>
-                    <button onclick=" borrowBook()">Submit</button>
+                    <label for="">Enter Book Count</label><br><br>
+                    <input type="text" class="getBookCount" name="" id="getBookCount"><br><br>
+                    <button onclick=" borrowBook()" class="submitbtn">Submit</button>
             </div>
             <div class="showBorrowHistory" id="showBorrowHistory">
                 <h2 class="headings">Borrow History</h2>
                 <table border="1" class="borrowHistoryTable" id="borrowHistoryTable">
                     <tr>
-                        <th>BookID</th>
-                        <th>UserID</th>
-                        <th>Borrowed Date</th>
-                        <th>Borrowed Book Count</th>
-                        <th>Status</th>
-                        <th>Paid Fine</th>
+                        <th class="tabelcell">BookID</th>
+                        <th class="tabelcell">Borrowed Date</th>
+                        <th class="tabelcell">Borrowed Book Count</th>
+                        <th class="tabelcell">Status</th>
+                        <th class="tabelcell">Paid Fine</th>
                     </tr>
                     <tbody class="borrowHistoryBody" id="borrowHistoryBody">
 
@@ -129,10 +129,10 @@
                 <h2 class="headings">Return Books</h2>
                 <table border="1" id="returnBooksTable" class="returnBooksTable">
                 <tr>
-                    <th>BookID</th>
-                    <th>Borrowed Date</th>
-                    <th>Book Count</th>
-                    <th>Action</th>
+                    <th class="tabelcell">BookID</th>
+                    <th class="tabelcell">Borrowed Date</th>
+                    <th class="tabelcell">Book Count</th>
+                    <th class="tabelcell">Action</th>
                 </tr>
                     <tbody id="returnBooksBody">
 
@@ -144,9 +144,9 @@
             <div class="showWalletRecharge" id="showWalletRecharge">
                 <h2 class="headings">Wallet Recharge</h2>
                 <div id="askAmount">
-                    <label for="">Enter Amount</label><br>
-                    <input type="text" name="" id="amount"><br><br>
-                    <button class="buttons" onclick="Recharge()">Recharge</button>
+                    <!-- <label for="" class="enterAmount">Enter Amount</label><br> -->
+                    <input type="text" name="" id="amount" class="getBookCount" placeholder="Enter Amount"><br><br>
+                    <button class="submitbtn" onclick="Recharge()">Recharge</button>
                 </div>
             </div>
             <div class="showBalance" id="showBalance">

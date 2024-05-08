@@ -256,10 +256,10 @@ async function showBorrowBook()
         {
             borrowBookTableBody.innerHTML += `
             <tr>
-            <td>${book.bookName} </td>
-            <td>${book.authorName} </td>
-            <td>${book.bookCount} </td>
-            <td><button onclick="getBorrowBookCount(${book.bookID})"> Borrow </button></td>
+            <td  class="tabelcell">${book.bookName} </td>
+            <td class="tabelcell">${book.authorName} </td>
+            <td class="tabelcell">${book.bookCount} </td>
+            <td class="tabelcell"><button class="borrowButton" onclick="getBorrowBookCount(${book.bookID})"> Borrow </button></td>
             </tr>
             `;
         }
@@ -328,7 +328,10 @@ async function borrowBook()
             
             if(borrow.bookID == selectedBook.bookID)
             {
+
                 let nextAvailableDate = addDays(borrow.borrowDate,15);
+                //  let nextAvailableDate = new Date(borrow.borrowDate);
+                // nextAvailableDate.setDate(nextAvailableDate.getDate()+15);
                 if(nextAvailableDate < minimumDate)
                     {
                         minimumDate = nextAvailableDate;
@@ -344,7 +347,7 @@ function addDays(date:Date, days:number) {
     let result = new Date(date);
     result.setDate(result.getDate() + days);
     return result;
-  }
+}
 
 async function showBorrowHistory()
 {
@@ -376,12 +379,11 @@ async function showBorrowHistory()
                 {
                     borrowHistoryBody.innerHTML+=`
                     <tr>
-                    <td>${borrow.bookID} </td>
-                    <td>${borrow.userID} </td>
-                    <td>${borrow.borrowDate} </td>
-                    <td>${borrow.borrowBookCount} </td>
-                    <td>${borrow.status} </td>
-                    <td>${borrow.paidFineAmount} </td>
+                    <td class="tabelcell">${borrow.bookID} </td>
+                    <td class="tabelcell">${borrow.borrowDate.toString().split('T')[0].split('-').reverse().join('-')} </td>
+                    <td class="tabelcell">${borrow.borrowBookCount} </td>
+                    <td class="tabelcell">${borrow.status} </td>
+                    <td class="tabelcell">${borrow.paidFineAmount} </td>
                     </tr>
                     `;
                 }
@@ -399,6 +401,8 @@ async function showReturnBooks()
     let showWalletRecharge = document.getElementById('showWalletRecharge') as HTMLDivElement;
     let signup = document.getElementById('signup') as HTMLDivElement;
     let signinpage = document.getElementById("sign-in") as HTMLDivElement;
+    let getBorrowBookCount = document.getElementById("getBorrowBookCount")as HTMLDivElement;
+    getBorrowBookCount.style.display="none";
       homepage.style.display="none";
       borrowBook.style.display="none";
       showBorrowHistory.style.display="none";
@@ -418,10 +422,10 @@ async function showReturnBooks()
                 {
                     returnBooksBody.innerHTML+=`
                     <tr>
-                    <td>${borrow.bookID}</td>
-                    <td>${borrow.borrowDate}</td>
-                    <td>${borrow.borrowBookCount}</td>
-                    <td><button onclick="returnBook('${borrow.borrowID}')"> Return </button></td>
+                    <td class="tabelcell">${borrow.bookID}</td>
+                    <td class="tabelcell">${borrow.borrowDate.toString().split('T')[0].split('-').reverse().join('-')}</td>
+                    <td class="tabelcell">${borrow.borrowBookCount}</td>
+                    <td class="tabelcell"><button class="borrowButton" onclick="returnBook('${borrow.borrowID}')"> Return </button></td>
                     </tr>
                     `;
                 }
@@ -439,23 +443,53 @@ async function returnBook(id:string)
         {
             if(borrow.borrowID == id)
                 {
-                    // const timeDifference = borrow.borrowDate.getTime() - new Date().getTime();
-                    // const daysDifference = timeDifference/(1000*60*60*24);
-                    // alert("Differnce in days is" +daysDifference);
-                    borrow.status="Returned";
-                    updateBorrow(borrow.borrowID,borrow);
-                    bookList.forEach(book=>
+                    const timeDifference = Math.abs(new Date(borrow.borrowDate).getTime() - new Date().getTime()) ;
+                    const daysDifference = Math.round(timeDifference/(1000*60*60*24)) ;
+                    alert("You returned a book in " +daysDifference +" days");
+                    if(daysDifference > 0)
                         {
-                            if(book.bookID== borrow.bookID)
+                            if(CurrentUser.walletBalance >= daysDifference - 15)
                                 {
-                                    book.bookCount+=borrow.borrowBookCount;
-                                    updateBook(book.bookID,book);
-                                    alert("Returned Successfully");
-                                    showReturnBooks();
+                                    // borrow.status="Returned";
+                                    // updateBorrow(borrow.borrowID,borrow);
+                                    bookList.forEach(book=>
+                                        {
+                                            if(book.bookID == borrow.bookID)
+                                                {
+                                                    book.bookCount+=borrow.borrowBookCount;
+                                                    updateBook(book.bookID,book);
+                                                    borrow.paidFineAmount = daysDifference -15;
+                                                    borrow.status="Returned";
+                                                    updateBorrow(borrow.borrowID,borrow);
+                                                    CurrentUser.walletBalance -= daysDifference-15;
+                                                    updateUser(CurrentUser.userID,CurrentUser);
+                                                    alert("Returned Successfully");
+                                                    showReturnBooks();
+                                                }
+                                        }
+                                    );
                                 }
+                            else
+                            {
+                                alert("Your return date is more than 15 days. Please recharge atleast "+ daysDifference +" Rs for returning.");
+                            }
                         }
-                    );
-                    
+                    else
+                    {
+                        borrow.status="Returned";
+                        updateBorrow(borrow.borrowID,borrow);
+                        bookList.forEach(book=>
+                            {
+                                if(book.bookID== borrow.bookID)
+                                    {
+                                        book.bookCount+=borrow.borrowBookCount;
+                                        updateBook(book.bookID,book);
+                                        alert("Returned Successfully");
+                                        showReturnBooks();
+                                    }
+                            }
+                        );
+                    } 
                 }
         }
     );
@@ -470,6 +504,8 @@ function showWalletRecharge()
     let showWalletRecharge = document.getElementById('showWalletRecharge') as HTMLDivElement;
     let signup = document.getElementById('signup') as HTMLDivElement;
     let showBalance = document.getElementById("showBalance") as HTMLDivElement;
+    let getBorrowBookCount = document.getElementById("getBorrowBookCount")as HTMLDivElement;
+    getBorrowBookCount.style.display="none";
     showBalance.style.display="none";
     let signinpage = document.getElementById("sign-in") as HTMLDivElement;
       homepage.style.display="none";
@@ -493,6 +529,8 @@ function showBalance()
     let showWalletRecharge = document.getElementById('showWalletRecharge') as HTMLDivElement;
     let signup = document.getElementById('signup') as HTMLDivElement;
     let signinpage = document.getElementById("sign-in") as HTMLDivElement;
+    let getBorrowBookCount = document.getElementById("getBorrowBookCount")as HTMLDivElement;
+    getBorrowBookCount.style.display="none";
       homepage.style.display="none";
       borrowBook.style.display="none";
       showBorrowHistory.style.display="none";
@@ -532,6 +570,8 @@ function logOut()
     let signup = document.getElementById('signup') as HTMLDivElement;
     let signinpage = document.getElementById("sign-in") as HTMLDivElement;
     let welcomePage = document.getElementById("welcomePage") as HTMLDivElement;
+    let getBorrowBookCount = document.getElementById("getBorrowBookCount")as HTMLDivElement;
+    getBorrowBookCount.style.display="none";
     welcomePage.style.display = "none";
       homepage.style.display="block";
       borrowBook.style.display="none";
@@ -540,6 +580,7 @@ function logOut()
       showWalletRecharge.style.display="none";
       signup.style.display="none";
       signinpage.style.display="none";
+      location.reload();
 }
 
   //Validating Inputs for new User Registration

@@ -9,7 +9,8 @@
     border: 0rem;
     color: white;
     margin: 0 2%;
-    font-weight: bold;
+    font-weight: 650;
+    font-size: 90%;
 }
 .homepage{
     text-align: center;
@@ -73,6 +74,7 @@
     text-align: center;
     border-collapse: collapse;
     padding: 5px;
+    border-color: rgb(244, 130, 48);
 }
 
 .showWalletRecharge{
@@ -83,6 +85,13 @@
     text-align: center;
     color: rgb(244, 130, 48);
     font-weight: bold;
+    font-size: 2rem;
+}
+
+.signin{
+    color: rgb(244, 130, 48);
+    font-weight: bold;
+    font-size: 2rem;
 }
 
 .signuppage{
@@ -95,4 +104,47 @@
 
 .note{
     margin-left: 36%;
+}
+
+.tabelcell{
+    padding: 8px;
+}
+
+.borrowButton{
+    background-color: rgb(244, 130, 48);
+    width: 60%;
+    height: 30px;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: white;
+    font-weight: 550;
+    border: 0;
+}
+
+.getBorrowBookCount{
+    text-align: center;
+    font-size: 25;
+    color: rgb(244, 130, 48);
+    font-weight: 600;
+    margin-top: 2%;
+}
+
+.submitbtn{
+    width: 10%;
+    height: 7%;
+    background-color: rgb(244, 130, 48);
+    border-radius: 8px;
+    font-size: 1rem;
+    color: white;
+    font-weight: 550;
+    border: 0;
+}
+
+.getBookCount{
+    height: 5%;
+    font-size: 16;
+}
+
+.enterAmount{
+    font-size: 18;
 }
