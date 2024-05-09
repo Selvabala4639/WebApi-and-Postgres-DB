@@ -152,6 +152,30 @@ let signUp = () => {
     let newUserConfirmPassword = document.getElementById('confirm-password').value;
     let newuserPhone = document.getElementById('newUserPhone').value;
     let newUserProfile = document.getElementById("newUserProfile").value;
+    function handleImageUpload(event) {
+        var _a;
+        const inputElement = event.target;
+        const file = (_a = inputElement.files) === null || _a === void 0 ? void 0 : _a[0]; // Get the selected file
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                var _a;
+                const base64String = (_a = e.target) === null || _a === void 0 ? void 0 : _a.result;
+                // Now you have the base64-encoded image data
+                console.log(base64String);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+    // async function loadImageAsByteArray(url: string): Promise<Uint8Array> {
+    //     const response = await fetch(url);
+    //     const buffer = await response.arrayBuffer();
+    //     return new Uint8Array(buffer);
+    // }
+    // // Usage:
+    // const imageUrl = 'https://example.com/image.png'; // Replace with your image URL
+    // const imageByteArray = await loadImageAsByteArray(imageUrl);
+    // console.log(imageByteArray);
     if (checkNewuserName() && checkEmail() && checkPassword() && checkConfirmPassword() && checkPhone()) {
         // UserList.push(new UserInfo(name.value, newuserPhone, newuserEmail, newuserPassword))
         const user = {

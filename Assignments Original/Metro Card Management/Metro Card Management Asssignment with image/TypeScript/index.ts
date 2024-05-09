@@ -196,7 +196,7 @@ function welcomePage()
     const imgElement = document.getElementById("profilePicture") as HTMLImageElement;
     imgElement.src = "data:image/png;base64," + CurrentUser.userImage;
     
-    
+
     let greet = document.getElementById("greet") as HTMLDivElement;
     greet.innerHTML= `Welcome ${CurrentUser.userName} `;
     let welcomePage = document.getElementById("welcomePage") as HTMLDivElement;
@@ -225,6 +225,34 @@ let signUp = () =>
     let newUserConfirmPassword = (document.getElementById('confirm-password') as HTMLInputElement).value;
     let newuserPhone = (document.getElementById('newUserPhone') as HTMLInputElement).value;
     let newUserProfile = (document.getElementById("newUserProfile")as HTMLInputElement).value;
+
+function handleImageUpload(event: Event): void {
+        const inputElement = event.target as HTMLInputElement;
+        const file = inputElement.files?.[0]; // Get the selected file
+    
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const base64String = e.target?.result as string;
+                // Now you have the base64-encoded image data
+                console.log(base64String);
+            };
+            reader.readAsDataURL(file);
+        }
+}
+
+// async function loadImageAsByteArray(url: string): Promise<Uint8Array> {
+//     const response = await fetch(url);
+//     const buffer = await response.arrayBuffer();
+//     return new Uint8Array(buffer);
+// }
+
+// // Usage:
+// const imageUrl = 'https://example.com/image.png'; // Replace with your image URL
+// const imageByteArray = await loadImageAsByteArray(imageUrl);
+// console.log(imageByteArray);
+
+
     if(checkNewuserName() && checkEmail() && checkPassword() && checkConfirmPassword() && checkPhone())
     {
         // UserList.push(new UserInfo(name.value, newuserPhone, newuserEmail, newuserPassword))

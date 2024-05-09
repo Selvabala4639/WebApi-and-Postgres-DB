@@ -38,6 +38,26 @@ namespace Metro_API.Controllers
         }
 
 
+        // [HttpGet("{id}")]
+        // public IActionResult GetTravelID(int id)
+        // {
+        //     var travel = _dbContext.travels.FirstOrDefault(m => m.TravelID ==id);
+        //     if(travel == null)
+        //     {
+        //         return NotFound();
+        //     }
+        //     else{
+        //         return Ok(travel);
+        //     }
+        // }
+
+
+
+
+
+        
+
+
         //Adding new Travel
         [HttpPost]
         public IActionResult AddTravel([FromBody] TravelHistory travel)

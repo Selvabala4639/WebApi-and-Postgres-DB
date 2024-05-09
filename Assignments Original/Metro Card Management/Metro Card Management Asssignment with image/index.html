@@ -25,7 +25,7 @@
             <label for="" class="userNamelength">Author name length should not exceed 50</label><br>
 
             <label for="">Profile</label><br>
-            <input type="file" name="" id="newUserProfile"><br>
+            <input type="file" name="" id="newUserProfile" (change)="handleImageUpload($event)"><br>
             
             <label for="newUserEmail">Email</label><br>
             <input type="email" name="newUserEmail" id="newUserEmail" onfocusout="checkEmail()" onkeyup="checkEmail()">
