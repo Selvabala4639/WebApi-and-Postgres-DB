@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Web Concepts\\API\\Assignments\\Metro Card Management\\Metro API with image\\Metro API.csproj": {}
+    "D:\\Web Concepts\\API\\Assignments Original\\Metro Card Management\\Metro API with image\\Metro API.csproj": {}
   },
   "projects": {
-    "D:\\Web Concepts\\API\\Assignments\\Metro Card Management\\Metro API with image\\Metro API.csproj": {
+    "D:\\Web Concepts\\API\\Assignments Original\\Metro Card Management\\Metro API with image\\Metro API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Web Concepts\\API\\Assignments\\Metro Card Management\\Metro API with image\\Metro API.csproj",
+        "projectUniqueName": "D:\\Web Concepts\\API\\Assignments Original\\Metro Card Management\\Metro API with image\\Metro API.csproj",
         "projectName": "Metro API",
-        "projectPath": "D:\\Web Concepts\\API\\Assignments\\Metro Card Management\\Metro API with image\\Metro API.csproj",
+        "projectPath": "D:\\Web Concepts\\API\\Assignments Original\\Metro Card Management\\Metro API with image\\Metro API.csproj",
         "packagesPath": "C:\\Users\\SelvabalaVelmurugan\\.nuget\\packages\\",
-        "outputPath": "D:\\Web Concepts\\API\\Assignments\\Metro Card Management\\Metro API with image\\obj\\",
+        "outputPath": "D:\\Web Concepts\\API\\Assignments Original\\Metro Card Management\\Metro API with image\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\SelvabalaVelmurugan\\AppData\\Roaming\\NuGet\\NuGet.Config"

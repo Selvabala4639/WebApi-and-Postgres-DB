@@ -127,7 +127,7 @@ function welcomePage() {
     // const base64String = btoa(String.fromCharCode(...byteArray));
     // const imageUrl = `data:image/jpg;base64,${base64String}`;
     const imgElement = document.getElementById("profilePicture");
-    imgElement.src = "data:image/png;base64," + CurrentUser.userImage;
+    imgElement.src = CurrentUser.userImage[0];
     let greet = document.getElementById("greet");
     greet.innerHTML = `Welcome ${CurrentUser.userName} `;
     let welcomePage = document.getElementById("welcomePage");
@@ -142,6 +142,7 @@ let newUserPage = () => {
     signUp.style.display = "block";
 };
 let signUp = () => {
+    var _a;
     let homepage = document.getElementById("homepage");
     let signUp = document.getElementById("signUp");
     homepage.style.display = "block";
@@ -151,22 +152,23 @@ let signUp = () => {
     let newuserPassword = document.getElementById('newUserPassword').value;
     let newUserConfirmPassword = document.getElementById('confirm-password').value;
     let newuserPhone = document.getElementById('newUserPhone').value;
-    let newUserProfile = document.getElementById("newUserProfile").value;
-    function handleImageUpload(event) {
-        var _a;
-        const inputElement = event.target;
-        const file = (_a = inputElement.files) === null || _a === void 0 ? void 0 : _a[0]; // Get the selected file
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                var _a;
-                const base64String = (_a = e.target) === null || _a === void 0 ? void 0 : _a.result;
-                // Now you have the base64-encoded image data
-                console.log(base64String);
-            };
-            reader.readAsDataURL(file);
-        }
-    }
+    let newUserProfile = document.getElementById("newUserProfile");
+    // function handleImageUpload(): string {
+    //         //const inputElement = event.target as HTMLInputElement;
+    //         const file = newUserProfile.files?.[0]; // Get the selected file
+    //         if (file) {
+    //             const reader = new FileReader();
+    //             let base64String = "";
+    //             reader.onload = (e) => {
+    //                  base64String = e.target?.result as string;
+    //                 // Now you have the base64-encoded image data
+    //                 console.log(base64String.split(",")[1]);
+    //             };
+    //             //reader.readAsDataURL(file);
+    //             return base64String.split(",")[1];
+    //         }
+    //         return "";
+    // }
     // async function loadImageAsByteArray(url: string): Promise<Uint8Array> {
     //     const response = await fetch(url);
     //     const buffer = await response.arrayBuffer();
@@ -176,28 +178,42 @@ let signUp = () => {
     // const imageUrl = 'https://example.com/image.png'; // Replace with your image URL
     // const imageByteArray = await loadImageAsByteArray(imageUrl);
     // console.log(imageByteArray);
-    if (checkNewuserName() && checkEmail() && checkPassword() && checkConfirmPassword() && checkPhone()) {
-        // UserList.push(new UserInfo(name.value, newuserPhone, newuserEmail, newuserPassword))
-        const user = {
-            cardNumber: 0,
-            userName: name,
-            userImage: (newUserProfile),
-            userPhone: newuserPhone,
-            userEmail: newuserEmail,
-            userPassword: newuserPassword,
-            userBalance: 0
+    const file = (_a = newUserProfile.files) === null || _a === void 0 ? void 0 : _a[0];
+    let base64String = "";
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            var _a;
+            // `event.target.result` contains the base64 encoded string
+            base64String = (_a = event.target) === null || _a === void 0 ? void 0 : _a.result;
+            // Now you can use the base64String as needed
+            console.log(base64String);
+            if (checkNewUserName() && checkEmail() && checkPassword() && checkConfirmPassword() && checkPhone()) {
+                // UserList.push(new UserInfo(name.value, newuserPhone, newuserEmail, newuserPassword))
+                const user = {
+                    cardNumber: 0,
+                    userName: name,
+                    userImage: [base64String],
+                    userPhone: newuserPhone,
+                    userEmail: newuserEmail,
+                    userPassword: newuserPassword,
+                    userBalance: 0
+                };
+                alert("Registration Successful");
+                addUserAPI(user);
+            }
+            else {
+                checkNewUserName();
+                checkEmail();
+                checkPassword();
+                checkConfirmPassword();
+                checkPhone();
+                alert("Please enter all details");
+                newUserPage();
+            }
         };
-        alert("Registration Successful");
-        addUserAPI(user);
-    }
-    else {
-        checkNewuserName();
-        checkEmail();
-        checkPassword();
-        checkConfirmPassword();
-        checkPhone();
-        alert("Please enter all details");
-        newUserPage();
+        // Read the file as a data URL
+        reader.readAsDataURL(file);
     }
 };
 let existingUserPage = () => {
@@ -380,7 +396,7 @@ function logOut() {
     homepage.style.display = "block";
 }
 //Validating Inputs for new User Registration
-let checkNewuserName = () => {
+let checkNewUserName = () => {
     let userName = document.getElementById("userName").value;
     let regx_userName = /^[a-zA-Z]{2,50}$/;
     if (userName == "") {

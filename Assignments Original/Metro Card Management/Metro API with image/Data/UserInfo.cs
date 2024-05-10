@@ -23,6 +23,6 @@ namespace Metro_API.Data
         public string UserEmail { get; set; }
         public string UserPassword { get; set; }
         public double UserBalance { get; set; }
-        public byte[] UserImage { get; set; }
+        public string[] UserImage { get; set; }
     }
 }

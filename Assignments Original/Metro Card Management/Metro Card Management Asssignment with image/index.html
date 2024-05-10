@@ -16,7 +16,10 @@
 
         <!-- SignUp -->
         <div id="signUp" class="signUp">
+            
             <h2 class="welcome">Sign Up Page</h2>
+            
+            <form action="">
             <label for="userName">Name</label><br>
             <input type="text" name="userName" id="userName" onfocusout="checkNewUserName()" onkeyup="checkNewUserName()">
             <label for="" class="valid" >Valid</label>
@@ -24,8 +27,11 @@
             <span class="specialChar">Special Character not allowed</span>
             <label for="" class="userNamelength">Author name length should not exceed 50</label><br>
 
-            <label for="">Profile</label><br>
-            <input type="file" name="" id="newUserProfile" (change)="handleImageUpload($event)"><br>
+            <form action="" enctype="multipart/form-data">
+                <label for="">Profile</label><br>
+                <input type="file" name="" id="newUserProfile"><br>
+            </form>
+            
             
             <label for="newUserEmail">Email</label><br>
             <input type="email" name="newUserEmail" id="newUserEmail" onfocusout="checkEmail()" onkeyup="checkEmail()">
@@ -50,22 +56,26 @@
             <label for="" class="valid" >Valid</label>
             <label for="" class="invalid" >*Invalid</label><br>
             <button class="submit" onclick="signUp()">Submit</button>
+
+            </form>
+
+            
         </div>
 
         <!-- SIGNIN -->
         <div id="signIn" class="signIn">
             <h2 class="welcome">Sign In Page</h2>
             <label for="">Email</label><br>
-            <input type="text" name="" id="existing-user-email" value="selva@"><br>
+            <input type="text" name="" id="existing-user-email" value="aabb@gamil.com"><br>
             <label for="">Password</label><br>
-            <input type="text" name="" id="existing-user-password" value="selva"><br><br>
+            <input type="text" name="" id="existing-user-password" value="Selva@123"><br><br>
             <button class="loginbtn" id="login" onclick="loginIn()">Login</button><br>
             <p><i><b>Note* </b></i>email and pasword are given for easy login.</p>
         </div>
         <div class="welcomePage" id="welcomePage">
             <div class="welcomeHeader">
                 <h2 class="welcome" id="greet"></h2>
-                <img src="" alt="Profile Picture" id="profilePicture">
+                <img src="" alt="Profile Picture" id="profilePicture" class="profilePicture">
                 <button class="logout" onclick="logOut()">LOG OUT</button>
             </div>
             <div class="menuOptions">

@@ -426,8 +426,7 @@ async function showEditMedicine (id:number){
                 editmedicineName.value = medicine.medicineName;
                 (editPrice.value) =  medicine.medicinePrice.toString();
                 editquantity.value = medicine.medicineQuantity.toString();
-                editExpiryDate.value = medicine.medicineExpireDate.toString();
-                
+                editExpiryDate.value = medicine.medicineExpireDate.toString(); 
                 return false;
             }
     });

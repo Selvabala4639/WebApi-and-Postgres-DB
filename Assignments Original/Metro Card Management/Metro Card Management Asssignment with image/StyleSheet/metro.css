@@ -89,4 +89,9 @@
     height: 10%;
     margin: 0 2%;
     border-radius: 2px;
-}321
+}
+.profilePicture{
+    width: 50;
+    height: 50;
+    border-radius: 100%;
+}
