@@ -9,52 +9,57 @@
     <body>
         <div id="homePage" class="homePage"> 
             <div class="headers">
-                <h2>Home Page</h2>
+                <h2 class="titles">Home Page</h2>
             </div>
             <div class="sininSignUp">
                 <button class="signUpBtn" onclick="newUserPagePageFunction()">Sign Up</button>
-                <button class="signInBtn" onclick="showSignInPage()">Sign In</button>
+                <button class="signUpBtn" onclick="showSignInPage()">Sign In</button>
             </div>
         </div>
         <div class="signUpPage" id="signUpPage" >
-            <h2>Sign In Page</h2>
-            <form action="" id="signpForm">
-                <label for="">Name</label><br>
-                <input type="text" name="" id="newUsername"><br><br>    
-
-                <form action="" enctype="multipart/form-data"> 
-                    <label for="">Profile Picture</label><br>
-                    <input type="file" name="" id="newUserProfile"><br>
+            
+            <h2 class="titles">Sign Up Page</h2><br>
+            <div class="signupdiv">
+                <form action="" id="signpForm">
+                    <label for="" class="signupLables">Name</label><br>
+                    <input type="text" name="" id="newUsername" class="inputbox"><br><br>    
+    
+                    <form action="" enctype="multipart/form-data"> 
+                        <label for=""  class="signupLables" >Profile Picture</label><br>
+                        <input type="file" name="" id="newUserProfile" class="newUserProfile"><br>
+                    </form>
+                    
+                    <label for=""  class="signupLables">Email</label><br>
+                    <input type="text" name="" id="newUserEmail" class="inputbox"><br>
+                     
+                    <label for=""  class="signupLables">Password</label><br>
+                    <input type="password" name="" id="newUserPassword" class="inputbox"><br>
+    
+                    <label for=""  class="signupLables">Phone</label><br>
+                    <input type="text" name="" id="newUserPhone" class="inputbox"><br><br>
+                    
+                    <button onclick="signUp()" class="singleSignIN">SignUp</button>
+                    <!-- <button onclick="homePageFunction()">Back</button> -->
                 </form>
-                
-                <label for="">Email</label><br>
-                <input type="text" name="" id="newUserEmail"><br>
-                 
-                <label for="">Password</label><br>
-                <input type="password" name="" id="newUserPassword"><br>
-
-                <label for="">Phone</label><br>
-                <input type="text" name="" id="newUserPhone"><br><br>
-                <button onclick="signUp()">SignUp</button>
-                <!-- <button onclick="homePageFunction()">Back</button> -->
-            </form>
+            </div>
+            
         </div>
 
         <div id="signinPage" class="signinPage">
-            <h2>Sign In Page</h2>
+            <h2 class="titles">Sign In Page</h2>
             <div>
-                <label for="">Email</label><br>
-                <input type="text" name="" id="checkEmail" value="bala@gmail.com"><br>
-                <label for="">Password</label><br>
-                <input type="text" name="" id="checkPassword" value="selva"><br><br>
-                <button onclick="SignIn()">Sign In</button>
-                <button onclick="homePageFunction()">Back</button>
+                <label for="" class="signupLables"> Email</label><br>
+                <input type="text" name="" id="checkEmail" value="bala@gmail.com" class="inputbox"><br>
+                <label for="" class="signupLables">Password</label><br>
+                <input type="text" name="" id="checkPassword" value="selva" class="inputbox"><br><br>
+                <button onclick="SignIn()" class="singleSignIN" >Sign In</button><br><br>
+                <button onclick="homePageFunction()" class="singleSignIN">Back</button>
             </div>
         </div>
 
         <div class="welcomePage" id="welcomePage">
             <div class="pageHeader">
-                <div>
+                <div >
                     <img src="" alt="" id="profile" class="profile">
                 </div class="greetdiv">
                 <div>
@@ -62,19 +67,41 @@
                 </div>
             </div>
             
-            <button onclick="showProductListFunction()">Product List</button>
-            <button onclick="showPurchaseFunction()">Purschase</button>
-            <button onclick="showCartFunction()">Cart</button>
-            <button onclick="showBillFunction()">Bill</button>
-            <button onclick="showWalletRechargeFunction()">Wallet Recharge</button>
-            <button onclick="showBalanceFunction()">Balance</button>
-            <button onclick="logOutFunction()">LogOut</button>
+            <button class="buttons" onclick="showProductListFunction()">Product List</button>
+            <button class="buttons" onclick="showPurchaseFunction()">Purschase</button>
+            <button class="buttons" onclick="showCartFunction()">Cart</button>
+            <button class="buttons" onclick="showBillFunction()">Bill</button>
+            <button class="buttons" onclick="showWalletRechargeFunction()">Wallet Recharge</button>
+            <button class="buttons" onclick="showBalanceFunction()">Balance</button>
+            <button class="buttons" onclick="logOutFunction()">LogOut</button>
 
         </div>
         <div class="showProductList" id="showProductList">
-            <h2>Product List</h2>
-            <button onclick="showAddProductForm()">Add</button>
-            <div>
+            <h2 class="titles">Product List</h2>
+            <div id="hideFormBtn">
+                <button onclick="showAddProductForm()" class="addbtn">Click To Add Product</button> <br><br>
+
+            </div>
+            <div class="addProductForm" id="addProductForm">
+                <form action="" >
+                    <!-- <label for="">Product Name</label> -->
+                    <input type="text" name="" id="newProductName" placeholder="Product Name"><br><br>
+
+                    <!-- <label for="">Available Quantity</label> -->
+                    <input type="text" name="" id="newProductQuantity" placeholder="Quantity"><br><br>
+
+                    <!-- <label for="">Price</label> -->
+                    <input type="text" name="" id="newProductPrice" placeholder="Price"><br><br>
+
+                    <label for="">Expiry Date</label>
+                    <input type="date" name="" id="newProductExpiryDate" placeholder="Expiry Date"><br><br>
+                            <form action="" enctype="multipart/form-data">
+                                <label for="">Product Photo</label>
+                                <input type="file" name="" id="newProductPhoto"><br><br>
+                            </form>
+                        <button type="submit" class="buttons" onclick="return addProduct()">Submit</button><br><br>
+                </form>
+            </div>
                 <table border="1" class="productListTable" id="productListTable">
                     <tr>
                         <th>Product Name</th>
@@ -89,30 +116,11 @@
 
                     </tbody>
                 </table>
-            </div>
-            <div class="addProductForm" id="addProductForm">
-                <form action="" >
-                    <label for="">Product Name</label><br>
-                    <input type="text" name="" id="newProductName"><br>
-
-                    <label for="">Available Quantity</label><br>
-                    <input type="text" name="" id="newProductQuantity"><br>
-
-                    <label for="">Price</label><br>
-                    <input type="text" name="" id="newProductPrice"><br>
-
-                    <label for="">Expiry Date</label><br>
-                    <input type="date" name="" id="newProductExpiryDate"><br>
-                            <form action="" enctype="multipart/form-data">
-                                <label for="">Product Photo</label><br>
-                                <input type="file" name="" id="newProductPhoto"><br><br>
-                            </form>
-                        <button type="submit" onclick="return addProduct()">Submit</button>
-                </form>
-            </div>
+            
+           
         </div>
         <div class="showPurchase" id="showPurchase"> 
-            <h2>Purchase</h2>
+            <h2 class="titles">Purchase</h2>
             <div id="askQuantity" class="askQuantity">
                 <h3 id="selectedItem"></h3>
                 <label for="">Enter Quantiity</label><br>
@@ -126,7 +134,6 @@
                     <th>Unit Price</th>
                     <th>Purchase Date</th>
                     <th>Expiry Date</th>
-
                     <th>Image</th>
                     <th>Action</th>
                 </tr>
@@ -137,7 +144,7 @@
             
         </div>
         <div class="showCart" id="showCart"> 
-            <h2>Cart</h2>
+            <h2 class="titles">Cart</h2>
             <table border="1" class="showCartTable" id="showCartTable">
                 <tr>
                     <th>Cart ID</th>
@@ -146,7 +153,6 @@
                     <th>Unit Price</th>
                     <th>Total Price</th>
                     <th>Delete</th>
-
                 </tr>
                 <tbody class="showCartBody" id="showCartBody">
                 </tbody>
@@ -171,12 +177,12 @@
         </div> -->
 
         <div class="showBill" id="showBill">
-            <h2>Bill</h2>
+            <h2 class="titles">Bill</h2>
             <div class="billTable" id="billTable">
             </div>
         </div>
         <div class="showWalletRecharge" id="showWalletRecharge"> 
-            <h2>Wallet Recharge</h2>
+            <h2 class="titles">Wallet Recharge</h2>
             <form action="" onsubmit="return recharge()" id="rechargeForm">
                 <label for="">Enter Amount</label><br>
                 <input type="text" name="" id="amount">

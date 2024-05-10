@@ -68,8 +68,6 @@ function newUserPagePageFunction() {
     showCart.style.display = "none";
     showWalletRecharge.style.display = "none";
     showBalance.style.display = "none";
-
-
 }
 
 function signUp() {
@@ -237,7 +235,7 @@ async function showProductListFunction() {
             <td>${product.productUnitPrice} </td>
             <td>${product.productPurchaseDate.toString().substring(0, 10)} </td>
             <td>${product.productExpiryDate.toString().substring(0, 10)} </td>
-            <td><img src="${product.productPhoto}"> </td>
+            <td><img src="${product.productPhoto}" class="productPhoto"> </td>
             <td><button onclick="return showEditProduct(${product.productID})">Edit</button>
             <button onclick="return deleteProduct(${product.productID})">Delete</button>
             </td>
@@ -283,6 +281,8 @@ async function deleteProduct(id: number) {
 function showAddProductForm() {
     let addProductForm = document.getElementById("addProductForm") as HTMLFormElement;
     addProductForm.style.display = "block";
+    let hideFormBtn = (document.getElementById("hideFormBtn") as HTMLDivElement);
+    hideFormBtn.style.display="none";
     // let addProductForm = document.getElementById("addProductForm") as HTMLFormElement;
     // let newProductName = (document.getElementById("newProductName") as HTMLInputElement).value;
     // let newProductQuantity = (document.getElementById("newProductQuantity") as HTMLInputElement).value;
@@ -481,10 +481,10 @@ async function showCartFunction() {
             <tr>
                 <td> ${cart.cartID} </td>
                 <td> ${cart.productName} </td>
-                <td>${cart.productQuantity}</td>
+                <td> ${cart.productQuantity}</td>
                 <td> ${cart.productUnitPrice} </td>
                 <td> ${cart.productTotalPrice} </td>
-                <td> <button onclick="deleteCartItem(${cart.cartID})"> Delete </button><td>
+                <td> <button onclick="deleteCartItem(${cart.cartID})"> Delete </button></td>
             </tr>
             `;
         //<input type="number" name="" id="${cart.cartID}" placeholder="Enter Quantity " value ="1"> 
@@ -497,10 +497,13 @@ async function showCartFunction() {
 function deleteCartItem(id: string) {
     localCartItems.forEach(cartItem => {
         if (cartItem.cartID == id) {
-            localCartItems = localCartItems.filter(cartItem.cartID);
+            localCartItems = localCartItems.filter(cart=>
+                cart.cartID != id
+            );
         }
     }
     )
+    showCartFunction();
 }
 
 async function purchaseCartItems() {
@@ -605,7 +608,7 @@ async function showBillFunction() {
             `
             <h4 id="orderID${order.orderID}">
             </h4>
-            <table border="1">
+            <table border="1" class="billTableCard">
                 <tr>
                     <th>Product Name</th>
                     <th>Quantity</th>
@@ -732,6 +735,7 @@ async function AddUserAPI(user: UserInfo): Promise<void> {
         throw new Error('Failed to add user');
     }
     alert("Registration Sussessful");
+    homePageFunction();
 }
 
 async function AddProductAPI(product: ProductInfo): Promise<void> {

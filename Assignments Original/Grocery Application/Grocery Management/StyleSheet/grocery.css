@@ -7,6 +7,7 @@
     height: 50;
     border-radius: 50%;
     margin: 0 20%;
+    margin-top: 14px;
 }
 
 .pageHeader{
@@ -25,13 +26,112 @@
 
 .homePage{
     display: flex;
-    width: 50%;
+    width: 29%;
     flex-direction: column;
     text-align: center;
     margin: auto;
+    background-color: #e9e3e3;
+    border-radius: 22px;
+
 }
 
 .signUpBtn{
-    width: 10%;
-    height: 220%;
+    width: 28%;
+    height: 46%;
+    margin: 28px 46px;
+    background: #ffa218;
+    border: 0 solid;
+    font-size: 20px;
+    border-radius: 9px;
+    font-weight: 600;
+    color: #e9e3e3;
+}
+.sininSignUp{   
+    height: 105px;
+}
+
+.headers{
+    font-size: 30px;
+    color: #ffa218;
+}
+.titles ,.showBalance{
+    font-size: 30px;
+    color: #ffa218;
+}
+
+.signUpPage{
+    justify-content: center;
+    margin: 0px 36%;
+    width: 25%;
+    padding-left: 10%;
+}
+.signupLables{
+    font-size: 20px;
+font-family: serif;
+color: #2d2424;
+}
+.singleSignIN{
+    margin: 0px 8%;
+    width: 107px;
+    height: 39px;
+    background: #ffa218;
+    font-size: 20px;
+    border-radius: 9px;
+    font-weight: 600;
+    color: #e9e3e3;
+    border: 0;
+}
+.buttons{
+    margin: 0px 1%;
+    width: 183px;
+    height: 39px;
+    background: #ffa218;
+    font-size: 20px;
+    border-radius: 9px;
+    font-weight: 600;
+    color: #e9e3e3;
+    border: 0;
+}
+.signinPage{
+    width: 20%;
+    margin: 0 40%;
+}
+.inputbox{
+    width: 177px;
+    height: 30px;
+    font-size: 17px;
+}
+
+.buttons:hover{
+    background-color: #2d2424;
+}
+.showProductList{
+    text-align: center;
+}
+.productListTable{
+    border-collapse: collapse;
+    margin: 0px 154px;
+    width: 80%;
+    text-align: center;
+}
+
+.productPhoto{
+    width: 100px;
+    height: 100px;
+}
+
+.addbtn{
+    margin: 0px 1%;
+    width: 220px;
+    height: 39px;
+    background: #ffa218;
+    font-size: 20px;
+    border-radius: 9px;
+    font-weight: 600;
+    color: #e9e3e3;
+    border: 0;
+}
+
+.billTableCard{
+    border-collapse: collapse;
 }
