@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection.Metadata;
 namespace Metro_API.Data
 {
     [Table("userInfo", Schema = "public")]
@@ -22,5 +23,6 @@ namespace Metro_API.Data
         public string UserEmail { get; set; }
         public string UserPassword { get; set; }
         public double UserBalance { get; set; }
+        public string[] UserImage { get; set; }
     }
 }

@@ -1,0 +1,205 @@
+<html>
+    <title>
+        Grocery Management
+    </title>
+    <head>
+        <script src="TS\gorcery.js"></script>
+        <link rel="stylesheet" href="StyleSheet\grocery.css">
+    </head>
+    <body>
+        <div id="homePage" class="homePage"> 
+            <div class="headers">
+                <h2 class="titles">Home Page</h2>
+            </div>
+            <div class="sininSignUp">
+                <button class="signUpBtn" onclick="newUserPagePageFunction()">Sign Up</button>
+                <button class="signUpBtn" onclick="showSignInPage()">Sign In</button>
+            </div>
+        </div>
+        <div class="signUpPage" id="signUpPage" >
+            
+            <h2 class="titles">Sign Up Page</h2><br>
+            <div class="signupdiv">
+                <form action="" id="signpForm">
+                    <label for="" class="signupLables">Name</label><br>
+                    <input type="text" name="" id="newUsername" class="inputbox"><br><br>    
+    
+                    <form action="" enctype="multipart/form-data"> 
+                        <label for=""  class="signupLables" >Profile Picture</label><br>
+                        <input type="file" name="" id="newUserProfile" class="newUserProfile"><br>
+                    </form>
+                    
+                    <label for=""  class="signupLables">Email</label><br>
+                    <input type="text" name="" id="newUserEmail" class="inputbox"><br>
+                     
+                    <label for=""  class="signupLables">Password</label><br>
+                    <input type="password" name="" id="newUserPassword" class="inputbox"><br>
+    
+                    <label for=""  class="signupLables">Phone</label><br>
+                    <input type="text" name="" id="newUserPhone" class="inputbox"><br><br>
+                    
+                    <button onclick="signUp()" class="singleSignIN">SignUp</button>
+                    <!-- <button onclick="homePageFunction()">Back</button> -->
+                </form>
+            </div>
+            
+        </div>
+
+        <div id="signinPage" class="signinPage">
+            <div class="signindiv">
+                <h2 class="titles">Sign In Page</h2>
+                <div>
+                <label for="" class="signupLables"> Email</label><br>
+                <input type="text" name="" id="checkEmail" value="bala@gmail.com" class="inputbox"><br>
+                <label for="" class="signupLables">Password</label><br>
+                <input type="text" name="" id="checkPassword" value="selva" class="inputbox"><br><br>
+                <button onclick="SignIn()" class="singleSignIN" >Sign In</button><br><br>
+                <button onclick="homePageFunction()" class="singleSignIN">Back</button>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="welcomePage" id="welcomePage">
+            <div class="pageHeader">
+                <div >
+                    <img src="" alt="" id="profile" class="profile">
+                </div class="greetdiv">
+                <div>
+                    <h2 id="greet" class="greet"></h2>
+                </div>
+            </div>
+            
+            <button class="buttons" onclick="showProductListFunction()">Product List</button>
+            <button class="buttons" onclick="showPurchaseFunction()">Purchase</button>
+            <button class="buttons" onclick="showCartFunction()">Cart</button>
+            <button class="buttons" onclick="showBillFunction()">Bill</button>
+            <button class="buttons" onclick="showWalletRechargeFunction()">Wallet Recharge</button>
+            <button class="buttons" onclick="showBalanceFunction()">Balance</button>
+            <button class="buttons" onclick="logOutFunction()">LogOut</button>
+
+        </div>
+        <div class="showProductList" id="showProductList">
+            <h2 class="titles">Product List</h2>
+            <div id="hideFormBtn">
+                <button onclick="showAddProductForm()" class="addbtn">Click To Add Product</button> <br><br>
+
+            </div>
+            <div class="addProductForm" id="addProductForm">
+                <form action="" id="addform">
+                    <!-- <label for="">Product Name</label> -->
+                    <input type="text" name="" id="newProductName" placeholder="Product Name"><br><br>
+
+                    <!-- <label for="">Available Quantity</label> -->
+                    <input type="text" name="" id="newProductQuantity" placeholder="Quantity"><br><br>
+
+                    <!-- <label for="">Price</label> -->
+                    <input type="text" name="" id="newProductPrice" placeholder="Price"><br><br>
+
+                    <label for="">Expiry Date</label>
+                    <input type="date" name="" id="newProductExpiryDate" placeholder="Expiry Date"><br><br>
+                            <form action="" enctype="multipart/form-data">
+                                <label for="">Product Photo</label>
+                                <input type="file" name="" id="newProductPhoto"><br><br>
+                            </form>
+                        <button type="submit" class="buttons" onclick="return addProduct()">Submit</button><br><br>
+                </form>
+            </div>
+                <table border="1" class="productListTable" id="productListTable">
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Available Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Purchase Date</th>
+                        <th>Expity Date</th>
+                        <th>Photo</th>
+                        <th>Action</th>
+                    </tr>
+                    <tbody id="productListBody">
+
+                    </tbody>
+                </table>
+            
+           
+        </div>
+        <div class="showPurchase" id="showPurchase"> 
+            <h2 class="titles">Purchase</h2>
+            <div id="askQuantity" class="askQuantity">
+                <h3 id="selectedItem"></h3>
+                <label for="">Enter Quantiity</label><br>
+                <input type="text" name="" id="selectedQuantity"><br>
+                <button onclick="addToCart()">Confirm</button>
+            </div>
+            <!-- <table border="1" id="purchaseBody">
+                <tr>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                    <th>Purchase Date</th>
+                    <th>Expiry Date</th>
+                    <th>Image</th>
+                    <th>Action</th>
+                </tr>
+                <tbody id="cartTableBody">
+
+                </tbody>
+            </table> -->
+            <div id="mainBox" class="mainBox">
+               
+              
+            </div>
+        </div>
+        <div class="showCart" id="showCart"> 
+            <h2 class="titles">Cart</h2>
+            <table border="1" class="showCartTable" id="showCartTable">
+                <tr>
+                    <th>Cart ID</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                    <th>Total Price</th>
+                    <th>Delete</th>
+                </tr>
+                <tbody class="showCartBody" id="showCartBody">
+                </tbody>
+            </table>
+            <button class="purchaseCartItems" id="purchaseCartItems" onclick="purchaseCartItems()">Buy Purchase</button>
+
+            
+
+        </div>
+        <!-- <div class="showBill" id="showBill"> 
+            <h2>Bill</h2>
+            <table border="1">
+                <tr>
+                    <th>Order ID</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                    <th>Total Price</th>
+                </tr>
+                <tbody id="billTableBody">
+
+                </tbody>
+            </table>
+
+        </div> -->
+
+        <div class="showBill" id="showBill">
+            <h2 class="titles">Bill</h2>
+            <div class="billTable" id="billTable">
+            </div>
+        </div>
+        <div class="showWalletRecharge" id="showWalletRecharge"> 
+            <h2 class="titles">Wallet Recharge</h2>
+            <form action="" onsubmit="return recharge()" id="rechargeForm">
+                <label for="">Enter Amount</label><br>
+                <input type="text" name="" id="amount">
+                <input type="submit" name="" id="" value="Submit">
+            </form>
+        </div>
+        <div class="showBalance" id="showBalance"> 
+            <h2 class="checkBalane" id="checkBalane"></h2>
+        </div>
+    </body>
+</html>

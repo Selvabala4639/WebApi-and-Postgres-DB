@@ -65,6 +65,7 @@ namespace Metro_API.Controllers
             userOld.CardNumber = user.CardNumber;
             userOld.UserName = user.UserName;
             userOld.UserEmail = user.UserEmail;
+            userOld.UserImage = user.UserImage;
             userOld.UserPassword = user.UserPassword;
             userOld.UserPhone = user.UserPhone;
             userOld.UserBalance = user.UserBalance;
