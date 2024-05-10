@@ -43,7 +43,7 @@ namespace Grocery_API.Controllers
             return Ok();
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public IActionResult UpdateOrder(int id, [FromBody] ProductInfo product)
         {
             var productOld = _dbContext.products.FirstOrDefault(o => o.ProductID == id);

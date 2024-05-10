@@ -1,0 +1,37 @@
+.signUpPage,.askQuantity,.signinPage, .welcomePage, .showProductList,.showPurchase ,.showBill ,.showCart,.showWalletRecharge,.showBalance ,.addProductForm{
+    display: none;
+}
+
+.profile{
+    width: 50;
+    height: 50;
+    border-radius: 50%;
+    margin: 0 20%;
+}
+
+.pageHeader{
+    display: flex;
+    width: 23%;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.greet{
+        font-size: 1.8rem;
+}
+
+.greetdiv{
+    padding-left: 50%;
+}
+
+.homePage{
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    text-align: center;
+    margin: auto;
+}
+
+.signUpBtn{
+    width: 10%;
+    height: 220%;
+}

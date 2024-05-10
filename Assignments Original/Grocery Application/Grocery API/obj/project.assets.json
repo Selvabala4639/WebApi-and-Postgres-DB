@@ -2245,11 +2245,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\Web Concepts\\API\\Assignments Original\\Grocery Application\\Grocery API\\Grocery API.csproj",
+      "projectUniqueName": "D:\\Web Concepts\\API\\Assignments Original\\Grocery Application\\Grocery API\\Grocery API.csproj",
       "projectName": "Grocery API",
-      "projectPath": "d:\\Web Concepts\\API\\Assignments Original\\Grocery Application\\Grocery API\\Grocery API.csproj",
+      "projectPath": "D:\\Web Concepts\\API\\Assignments Original\\Grocery Application\\Grocery API\\Grocery API.csproj",
       "packagesPath": "C:\\Users\\SelvabalaVelmurugan\\.nuget\\packages\\",
-      "outputPath": "d:\\Web Concepts\\API\\Assignments Original\\Grocery Application\\Grocery API\\obj\\",
+      "outputPath": "D:\\Web Concepts\\API\\Assignments Original\\Grocery Application\\Grocery API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\SelvabalaVelmurugan\\AppData\\Roaming\\NuGet\\NuGet.Config"
